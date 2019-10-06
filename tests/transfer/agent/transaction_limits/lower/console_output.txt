@@ -1,0 +1,8 @@
+>
+>
+agent>
+Account#
+Account#
+Amount¢
+Transaction cancelled*agent>
+logged out

@@ -1,0 +1,6 @@
+login
+machine
+withdraw
+1000000
+200000
+logout
