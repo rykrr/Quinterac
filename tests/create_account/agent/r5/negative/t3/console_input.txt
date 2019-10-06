@@ -1,0 +1,4 @@
+login 
+agent
+deleteacct
+8000000

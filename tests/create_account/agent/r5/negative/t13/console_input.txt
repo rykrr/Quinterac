@@ -1,0 +1,5 @@
+login 
+agent
+createacct
+10000000
+abcdefd
