@@ -1,5 +1,7 @@
 # Test Plan
 
+See `tests/test_cases.pdf` for test case spreadsheet
+
 ## Test Case Authors
 | Tests                        | Author         |
 | ---------------------------- | -------------- |
