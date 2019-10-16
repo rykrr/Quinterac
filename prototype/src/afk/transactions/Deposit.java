@@ -14,13 +14,15 @@ public class Deposit extends Transaction {
         super(TYPE, new NullAccount(), destination, amount);
 
         // TODO Better exception messages
-        int limit = session.getConstraints().getPerTransactionLimit(TYPE);
+        int limit;
+
+        limit = session.getConstraints().getPerTransactionLimit(TYPE);
         if (limit != 0 && limit < amount)
             throw new TransactionLimitViolation("Amount violates deposit limit");
 
         limit = session.getConstraints().getDailyLimit(TYPE);
         if (limit != 0 && limit < destination.getTransactionAmount(TYPE) + amount)
-            throw new DailyLimitViolation("Amount violates daily limit for depositing into account");
+            throw new DailyLimitViolation("Amount violates daily limit for depositing into account " + destination);
     }
 
 }

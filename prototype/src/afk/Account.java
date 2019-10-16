@@ -8,21 +8,15 @@ import java.util.Map;
 public class Account implements Comparable<Account> {
 
     private String number;
-    private String name;
 
     private Map<TransactionType, Integer> transactions;
 
-
-    public Account(String number, String name) {
+    public Account(String number) {
         throw new NumberFormatException();
     }
 
     public String getNumber() {
         return number;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void addTransaction(Transaction transaction) {
@@ -67,5 +61,10 @@ public class Account implements Comparable<Account> {
         if(o instanceof Account)
             return compareTo((Account) o) == 0;
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return number;
     }
 }

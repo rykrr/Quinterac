@@ -6,15 +6,20 @@ public class Console {
 
     }
 
-    public String getString() {
+    public String readString() {
         return "";
     }
 
-    public String getAccount() {
+    public String readAccount() {
         throw new NumberFormatException();
     }
 
-    public int getAmount() {
+    public int readAmount() {
         throw new NumberFormatException();
     }
+
+    public void writeString(String s) {
+
+    }
+
 }

@@ -8,13 +8,19 @@ public abstract class Transaction {
     private Account source;
     private Account destination;
     private int amount;
+    private String name;
 
 
-    public Transaction(TransactionType type, Account source, Account destination, int amount) {
+    public Transaction(TransactionType type, Account source, Account destination, int amount, String name) {
         this.type        = type;
         this.source      = source;
         this.destination = destination;
         this.amount      = amount;
+        this.name        = name;
+    }
+
+    public Transaction(TransactionType type, Account source, Account destination, int amount) {
+        this(type, source, destination, amount, "***");
     }
 
     public TransactionType getType() {
@@ -31,5 +37,13 @@ public abstract class Transaction {
 
     public int getAmount() {
         return amount;
+    }
+
+    public String toString() {
+        return type.getShortCode() + ' '
+                + source.getNumber() + ' '
+                + amount + ' '
+                + destination.getNumber() + ' '
+                + name;
     }
 }
