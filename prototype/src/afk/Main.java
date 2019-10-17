@@ -1,12 +1,13 @@
 package afk;
 
 import java.io.BufferedWriter;
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
-import java.util.Scanner;
+
+import afk.AccountListReader.AccountListReaderException;
 
 public class Main {
 
@@ -43,7 +44,9 @@ public class Main {
     	System.out.println("Type 'login' to begin");
     	String start = console.readString();
     	if(start.equals("login")) {
-    		accountlist;
+    		List<Account> accountlist;
+			try {
+				accountlist = AccountListReader.read(validAccountsListPath);
     		boolean sessionfinished = false;
     		while (!sessionfinished) {
     		System.out.println("Please enter login type (‘machine’ or ‘agent’)");
@@ -72,11 +75,13 @@ public class Main {
     		}
     		else if (input.length()>0) {
     			System.out.println("Error: invalid login type");
-    			continue;
     		}
-    		else 
-    			continue;
     		}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (AccountListReaderException e) {
+				e.printStackTrace();
+			}
     		}
         // Read valid accounts list file
         // Create a Session(validAccounts)
@@ -92,7 +97,5 @@ public class Main {
     	else if (start.length()>0) {
     		System.out.println("Error: invalid command");
     	}
-    	else
-    		continue;
     }
 }
