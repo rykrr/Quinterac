@@ -5,7 +5,8 @@ public enum TransactionType {
     WITHDRAW("WDR", "withdraw"),
     TRANSFER("XFR", "transfer"),
     CREATE_ACCOUNT("NEW", "createacct"),
-    DELETE_ACCOUNT("DEL", "deleteacct");
+    DELETE_ACCOUNT("DEL", "deleteacct"),
+    END_OF_SESSION("EOS", "logout");
 
     private String shortCode;
     private String command;

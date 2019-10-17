@@ -12,7 +12,19 @@ public class Account implements Comparable<Account> {
     private Map<TransactionType, Integer> transactions;
 
     public Account(String number) {
-        throw new NumberFormatException();
+        if(number.length() != 7)
+            throw new NumberFormatException("Account numbers must be 7 digits in length");
+
+        /*
+        if(number.charAt(0) == '0')
+            throw new NumberFormatException("Account numbers must not start with 0");
+         */
+
+        for(int i = 0; i < 7; i++)
+            if(!Character.isDigit(number.charAt(i)))
+                throw new NumberFormatException("Invalid account format given");
+
+        this.number = number;
     }
 
     public String getNumber() {
