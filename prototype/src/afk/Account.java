@@ -15,10 +15,8 @@ public class Account implements Comparable<Account> {
         if(number.length() != 7)
             throw new NumberFormatException("Account numbers must be 7 digits in length");
 
-        /*
-        if(number.charAt(0) == '0')
+        if(number.charAt(0) == '0' && !number.equals("0000000"))
             throw new NumberFormatException("Account numbers must not start with 0");
-         */
 
         for(int i = 0; i < 7; i++)
             if(!Character.isDigit(number.charAt(i)))
@@ -26,6 +24,7 @@ public class Account implements Comparable<Account> {
 
         this.number = number;
     }
+
 
     public String getNumber() {
         return number;
