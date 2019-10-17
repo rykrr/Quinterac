@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Session {
+	boolean finished;
+	String[] summary;
 
     // This is built from the valid account list
     Map<String, Account> accounts = new HashMap<>();
@@ -16,6 +18,8 @@ public class Session {
 
     public Session(SessionType sessionType, List<Account> validAccounts) {
         // This is after a login command
+    	this.finished = false;
+    	
     }
 
     /* We need to handle commands here somehow */
