@@ -13,12 +13,13 @@ public class Session {
     Map<String, Account> accounts = new HashMap<>();
     List<Transaction> transactions = new ArrayList<>();
 
-
-    public Session(SessionType sessionType, List<Account> validAccounts) {
-        // This is after a login command
+    public Session(Console c, SessionType sessionType, List<Account> validAccounts) {
     }
 
-    /* We need to handle commands here somehow */
+    public void addTransaction(Transaction t) {
+        t.getSourceAccount().addTransaction(t);
+    }
+
 
     public List<Transaction> logout() {
         return transactions;

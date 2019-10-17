@@ -10,15 +10,21 @@ public class Console {
         return "";
     }
 
-    public String readAccount() {
+    public String readAccount(String prompt) {
+        print(prompt + " #");
         throw new NumberFormatException();
     }
 
-    public int readAmount() {
+    public int readAmount(String prompt) {
+        print(prompt + " ¢");
         throw new NumberFormatException();
     }
 
-    public void writeString(String s) {
+    public void print(String s) {
+
+    }
+
+    public void println(String s) {
 
     }
 
