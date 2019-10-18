@@ -15,14 +15,8 @@ public class Session {
     Map<String, Account> accounts = new HashMap<>();
     List<Transaction> transactions = new ArrayList<>();
 
-
-    public Session(SessionType sessionType, List<Account> validAccounts) {
-        // This is after a login command
-    	this.finished = false;
-    	
+    public Session(Console c, SessionType sessionType, List<Account> validAccounts) {
     }
-
-    /* We need to handle commands here somehow */
 
     public List<Transaction> logout() {
         return transactions;

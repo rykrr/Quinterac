@@ -23,6 +23,8 @@ public class Deposit extends Transaction {
         limit = session.getConstraints().getDailyLimit(TYPE);
         if (limit != 0 && limit < destination.getTransactionAmount(TYPE) + amount)
             throw new DailyLimitViolation("Amount violates daily limit for depositing into account " + destination);
+
+        destination.addTransaction(this);
     }
 
 }

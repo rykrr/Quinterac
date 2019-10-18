@@ -1,19 +1,23 @@
 package afk.transactions;
 
+import afk.transactions.script.*;
+
 public enum TransactionType {
-    DEPOSIT("DEP", "deposit"),
-    WITHDRAW("WDR", "withdraw"),
-    TRANSFER("XFR", "transfer"),
-    CREATE_ACCOUNT("NEW", "createacct"),
-    DELETE_ACCOUNT("DEL", "deleteacct"),
-    END_OF_SESSION("EOS", "logout");
+    DEPOSIT         ("DEP", "deposit",      new DepositScript()),
+    WITHDRAW        ("WDR", "withdraw",     new WithdrawalScript()),
+    TRANSFER        ("XFR", "transfer",     new TransferScript()),
+    CREATE_ACCOUNT  ("NEW", "createacct",   new Placeholder()),
+    DELETE_ACCOUNT  ("DEL", "deleteacct",   new Placeholder()),
+    END_OF_SESSION  ("EOS", "logout",       new Placeholder());
 
     private String shortCode;
     private String command;
+    private TransactionScript script;
 
-    TransactionType(String shortCode, String command) {
+    TransactionType(String shortCode, String command, TransactionScript script) {
         this.shortCode = shortCode;
         this.command = command;
+        this.script = script;
     }
 
     public String getShortCode() {
@@ -24,6 +28,8 @@ public enum TransactionType {
         return command;
     }
 
+    public TransactionScript getScript() { return script; }
+
     public static TransactionType stringToEnum(String command) {
         for(TransactionType t : values())
             if(t.getCommand().equals(command))
@@ -32,4 +38,5 @@ public enum TransactionType {
         // TODO: Maybe throw an exception instead
         return null;
     }
+
 }

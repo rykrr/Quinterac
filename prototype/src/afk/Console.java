@@ -15,7 +15,6 @@ public class Console {
     	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     	try {
 			String line = reader.readLine();
-			reader.close();
 			return line;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -50,7 +49,11 @@ public class Console {
     	return amountNum;
     }
 
-    public void writeString(String s) {
+    public void print(String s) {
+
+    }
+
+    public void println(String s) {
 
     }
 

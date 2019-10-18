@@ -17,6 +17,9 @@ public abstract class Transaction {
         this.destination = destination;
         this.amount      = amount;
         this.name        = name;
+
+        if(type == null || source == null || destination == null || name == null)
+            throw new NullPointerException("No transaction field may be null!");
     }
 
     public Transaction(TransactionType type, Account source, Account destination, int amount) {
