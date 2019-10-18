@@ -21,6 +21,8 @@ public class Withdrawal extends Transaction {
         limit = session.getConstraints().getDailyLimit(TYPE);
         if (limit != 0 && limit < source.getTransactionAmount(TYPE) + amount)
             throw new DailyLimitViolation("Amount violates daily limit for withdrawing from account");
+
+        source.addTransaction(this);
     }
 
 }

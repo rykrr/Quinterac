@@ -1,5 +1,14 @@
 package afk;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.List;
+
+import afk.AccountListReader.AccountListReaderException;
+
 public class Main {
 
     /**
@@ -9,22 +18,81 @@ public class Main {
      *  args[2] Output: Transaction summary file
      */
     public static void main(String[] args) {
-        // Parse arguments
-        // Repeat forever?
-        new Main(args[1], args[2]);
+        // initialize the console for the banking system
+    	Console console = new Console();
+    	// keep checking user input until the user types in exit
+    	while (true) {
+        new Main(console, args[0], args[1]);
+    	}
     }
-
-    public Main(String validAccountsListPath, String transactionSummaryPath) {
-        // Initialize the console (We can use our custom Console class)
-        // Read console for "login" command
-
-        // Read valid accounts list file
-        // Create a Session(validAccounts)
-        // Read commands
-        // Pass commands to Session
-
-        // on logout, call session.logout
-        // write transaction summary list (from logout) to transaction summary file
+    
+    public void writeFile(String[] summary, String filepath) {
+    	try {
+    		// write the transaction summary to the output file
+			Writer output = new BufferedWriter(new FileWriter("filepath", true));
+			for (String line : summary) {
+				output.append(line);
+			}
+			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
-
+    
+    public Main(Console console, String validAccountsListPath, String transactionSummaryPath) {
+    	System.out.println("Type 'login' to begin");
+    	String start = console.readString();
+    	// read console for "login" command
+    	if(start.equals("login")) {
+    		List<Account> accountlist;
+			try {
+				// get valid account list
+				accountlist = AccountListReader.read(validAccountsListPath);
+    		boolean sessionfinished = false;
+    		while (!sessionfinished) {
+    		System.out.println("Please enter login type (‘machine’ or ‘agent’)");
+    		String input = console.readString();
+    		// open a session for Machine or Agent, wait and check if the session finished all transactions
+    		if(input.equals("machine")) {
+    			Session session = new Session(SessionType.MACHINE, accountlist);
+    			while(!sessionfinished) {
+    				sessionfinished = session.finished;
+        			}
+    			// get the summary array of the session
+    			String[] summary = session.summary;
+    			writeFile(summary, transactionSummaryPath);
+    			}
+    		else if (input.equals("agent")) {
+    			Session session = new Session(SessionType.AGENT, accountlist);
+    			while(!sessionfinished) {
+    				sessionfinished = session.finished;
+        			}
+    			String[] summary = session.summary;
+    			writeFile(summary, transactionSummaryPath);
+    		}
+    		else if (input.equals("logout")) {
+    			// if user directly logs out then write EOS to the summary file
+    			String[] array = new String[1];
+    			array[0] = "EOS 0000000 000 0000000 ***";
+    			sessionfinished = true;
+    			writeFile(array, transactionSummaryPath);
+    		}
+    		else if (input.length()>0) {
+    			System.out.println("Error: invalid login type");
+    		}
+    		}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (AccountListReaderException e) {
+				e.printStackTrace();
+			}
+    		}
+    	// able to exit after logged out
+    	else if (start.equals("exit")) {
+    		System.exit(0);
+    	}
+    	else if (start.length()>0) {
+    		System.out.println("Error: invalid command");
+    	}
+    }
 }
