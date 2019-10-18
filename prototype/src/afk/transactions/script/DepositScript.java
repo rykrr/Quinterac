@@ -14,21 +14,22 @@ import java.util.Map;
 
 public class DepositScript extends TransactionScript<Deposit> {
     @Override
-    public Deposit execute(Console console, SessionType type, Map<String, Account> accounts) {
+    public Deposit execute(Console console, SessionType type, Map<String, Account> accounts) throws TransactionCancelledException {
 
         Account account = getAccount("Deposit to ", console, accounts);
 
         int amount;
         while(true) {
-            amount = console.readAmount("Amount");
+            amount = getAmount("Amount", console);
+
             try {
                 return new Deposit(type, account, amount);
             }
             catch(TransactionLimitViolation v) {
-                console.println(v.getMessage());
+                System.out.println(v.getMessage());
             }
             catch(DailyLimitViolation v) {
-                console.println(v.getMessage());
+                System.out.println(v.getMessage());
             }
         }
     }

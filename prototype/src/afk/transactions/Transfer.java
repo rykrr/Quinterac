@@ -20,6 +20,8 @@ public class Transfer extends Transaction {
         limit = session.getConstraints().getDailyLimit(TYPE);
         if (limit != 0 && limit < source.getTransactionAmount(TYPE) + amount)
             throw new DailyLimitViolation("Amount violates daily limit for transferring out of account");
+
+        source.addTransaction(this);
     }
 
 }

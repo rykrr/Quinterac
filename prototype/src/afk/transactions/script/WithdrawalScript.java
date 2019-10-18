@@ -12,21 +12,21 @@ import java.util.Map;
 
 public class WithdrawalScript extends TransactionScript<Withdrawal> {
     @Override
-    public Withdrawal execute(Console console, SessionType type, Map<String, Account> accounts) {
+    public Withdrawal execute(Console console, SessionType type, Map<String, Account> accounts) throws TransactionCancelledException {
 
         Account account = getAccount("Withdraw from", console, accounts);
 
         int amount;
         while(true) {
-            amount = console.readAmount("Amount");
+            amount = getAmount("Amount", console);
             try {
                 return new Withdrawal(type, account, amount);
             }
             catch(TransactionLimitViolation v) {
-                console.println(v.getMessage());
+                System.out.println(v.getMessage());
             }
             catch(DailyLimitViolation v) {
-                console.println(v.getMessage());
+                System.out.println(v.getMessage());
             }
         }
     }
