@@ -15,6 +15,7 @@ public class Console {
     	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     	try {
 			String line = reader.readLine();
+			reader.close();
 			return line;
 		} catch (IOException e) {
 			e.printStackTrace();
