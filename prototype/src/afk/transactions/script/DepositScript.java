@@ -16,6 +16,9 @@ public class DepositScript extends TransactionScript<Deposit> {
     @Override
     public Deposit execute(Console console, SessionType type, Map<String, Account> accounts) throws TransactionCancelledException {
 
+        if(accounts.size() == 0)
+            throw new TransactionCancelledException("Error: There are no accounts to deposit to");
+
         Account account = getAccount("Deposit to ", console, accounts);
 
         int amount;

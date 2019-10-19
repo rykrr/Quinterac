@@ -14,6 +14,9 @@ public class WithdrawalScript extends TransactionScript<Withdrawal> {
     @Override
     public Withdrawal execute(Console console, SessionType type, Map<String, Account> accounts) throws TransactionCancelledException {
 
+        if(accounts.size() == 0)
+            throw new TransactionCancelledException("Error: There are no accounts to withdraw from");
+
         Account account = getAccount("Withdraw from", console, accounts);
 
         int amount;
