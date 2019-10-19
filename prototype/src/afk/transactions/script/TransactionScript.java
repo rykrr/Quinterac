@@ -53,7 +53,7 @@ public abstract class TransactionScript<T extends Transaction> {
                     throw new TransactionCancelledException();
             }
             catch(NumberFormatException e) {
-                System.out.println("Error: Please enter a valid amount [0, 99999999]");
+                System.out.println("Error: Please enter a valid amount");
                 amount = 0;
             }
         } while(amount == 0);
