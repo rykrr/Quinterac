@@ -38,7 +38,7 @@ public class Console {
     	}
     }
 
-    // read the amount, discard all characters that are not numbers
+    // read the amount, discard all characters that are space or comma
     public int readAmount() {
     	String amount = readString();
     	for (int i=0; i<amount.length(); i++) {
