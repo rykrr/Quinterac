@@ -47,7 +47,7 @@ public abstract class Transaction {
     public String toString() {
         return type.getShortCode() + ' '
                 + source.getNumber() + ' '
-                + amount + ' '
+                + (amount == 0? "000" : amount) + ' '
                 + destination.getNumber() + ' '
                 + name;
     }
