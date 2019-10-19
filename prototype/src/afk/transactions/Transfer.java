@@ -24,4 +24,9 @@ public class Transfer extends Transaction {
         source.addTransaction(this);
     }
 
+    public String getSuccessMessage() {
+        return "Successfully transferred $" + (getAmount()/100)
+                + " from account #" + getSourceAccount().getNumber()
+                + " to account #" + getDestinationAccount().getNumber();
+    }
 }

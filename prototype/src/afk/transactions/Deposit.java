@@ -27,4 +27,8 @@ public class Deposit extends Transaction {
         destination.addTransaction(this);
     }
 
+    public String getSuccessMessage() {
+        return "Successfully withdrew $" + (getAmount()/100)
+                + " from account #" + getSourceAccount().getNumber();
+    }
 }

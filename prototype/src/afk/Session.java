@@ -29,6 +29,7 @@ public class Session {
     public List<Transaction> run(Console console) {
         List<Transaction> transactions = new ArrayList<>();
 
+        Transaction transaction;
         TransactionType command;
         TransactionScript<?> script;
 
@@ -45,11 +46,13 @@ public class Session {
                 script = command.getScript();
             }
             catch(TransactionCancelledException cancel) {
-                System.out.println("Transaction cancelled");
+                System.out.println(cancel.getMessage());
                 continue;
             }
 
-            transactions.add(script.execute(console, sessionType, accounts));
+            transaction = script.execute(console, sessionType, accounts);
+            transactions.add(transaction);
+            System.out.println(transaction.getSuccessMessage());
 
         } while(command != TransactionType.END_OF_SESSION);
 
