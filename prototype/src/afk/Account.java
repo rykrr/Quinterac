@@ -3,13 +3,13 @@ package afk;
 import afk.transactions.Transaction;
 import afk.transactions.TransactionType;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Account implements Comparable<Account> {
 
     private String number;
-
-    private Map<TransactionType, Integer> transactions;
+    private Map<TransactionType, Integer> transactions = new HashMap<>();
 
     public Account(String number) {
         if(number.length() != 7)

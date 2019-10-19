@@ -22,6 +22,8 @@ public class Session {
 
         for(Account account : validAccounts)
             accounts.put(account.getNumber(), account);
+
+        System.out.println("Welcome! You have successfully logged in as " + sessionType.getName());
     }
 
     public List<Transaction> run(Console console) {
