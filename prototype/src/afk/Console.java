@@ -42,8 +42,11 @@ public class Console {
     public int readAmount() {
     	String amount = readString();
     	for (int i=0; i<amount.length(); i++) {
-    		if (!Character.isDigit(amount.charAt(i)))
+    		if (amount.charAt(i)==' ' || amount.charAt(i) == ',') {
     			amount = amount.substring(0, i) + amount.substring(i+1,amount.length());
+    			if ((i)<amount.length() || amount.charAt(i)==' ' || amount.charAt(i) == ',')
+    				i--;
+    		}
     	}
     	int amountNum = Integer.parseInt(amount.trim());
     	return amountNum;
