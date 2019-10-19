@@ -33,7 +33,7 @@ public class Main {
     		// write the transaction summary to the output file
 			Writer output = new BufferedWriter(new FileWriter(filepath, true));
 			for (String line : summary) {
-				output.append(line);
+				output.write(line);
 			}
 			output.close();
 		} catch (IOException e) {
