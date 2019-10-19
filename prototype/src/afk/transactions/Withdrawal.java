@@ -16,11 +16,11 @@ public class Withdrawal extends Transaction {
         // TODO Better exception messages
         int limit = session.getConstraints().getPerTransactionLimit(TYPE);
         if (limit != 0 && limit < amount)
-            throw new TransactionLimitViolation("Amount violates withdrawal limit of " + limit);
+            throw new TransactionLimitViolation("Amount violates withdrawal limit of ¢" + limit);
 
         limit = session.getConstraints().getDailyLimit(TYPE);
         if (limit != 0 && limit < source.getTransactionAmount(TYPE) + amount)
-            throw new DailyLimitViolation("Amount violates daily limit of "
+            throw new DailyLimitViolation("Amount violates daily limit of ¢"
                     + limit + " for withdrawing from account");
 
         source.addTransaction(this);
