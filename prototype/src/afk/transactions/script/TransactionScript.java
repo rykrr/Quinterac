@@ -27,6 +27,9 @@ public abstract class TransactionScript<T extends Transaction> {
 
                 if(number.equals(nullAccount.getNumber()))
                     throw new TransactionCancelledException();
+
+                if(number.startsWith("0"))
+                    throw new NumberFormatException();
             }
             catch(NumberFormatException e) {
                 System.out.println("Error: Please enter a valid account number");
