@@ -8,6 +8,7 @@ public class MachineConstraints extends TransactionConstraints {
         addAllowedTransactionType(TransactionType.DEPOSIT);
         addAllowedTransactionType(TransactionType.WITHDRAW);
         addAllowedTransactionType(TransactionType.TRANSFER);
+        addAllowedTransactionType(TransactionType.END_OF_SESSION);
 
         // TODO Set actual limits
         setPerTransactionLimit(TransactionType.DEPOSIT, 100000);
