@@ -60,13 +60,13 @@ public class Session {
 
             try {
                 script = command.getScript();
+                transaction = script.execute(console, sessionType, accounts);
             }
             catch(TransactionCancelledException cancel) {
                 System.out.println(cancel.getMessage());
                 continue;
             }
 
-            transaction = script.execute(console, sessionType, accounts);
             transactions.add(transaction);
             System.out.println(transaction.getSuccessMessage());
 
