@@ -29,7 +29,7 @@ public class Console {
             throw new NumberFormatException();
     	else {
     		for(int i=0; i<7; i++) {
-    			if (accountNum.charAt(i)>='0' && accountNum.charAt(i)<='9')
+    			if (Character.isDigit(accountNum.charAt(i)))
     				continue;
     			else
     				throw new NumberFormatException();
@@ -42,8 +42,8 @@ public class Console {
     public int readAmount() {
     	String amount = readString();
     	for (int i=0; i<amount.length(); i++) {
-    		if (amount.charAt(i)<='0' || amount.charAt(i)>='9')
-    			amount = amount.substring(0, i) + amount.substring(i+1);
+    		if (!Character.isDigit(amount.charAt(i)))
+    			amount = amount.substring(0, i) + amount.substring(i+1,amount.length());
     	}
     	int amountNum = Integer.parseInt(amount.trim());
     	return amountNum;
