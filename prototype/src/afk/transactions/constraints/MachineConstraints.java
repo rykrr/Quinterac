@@ -10,15 +10,14 @@ public class MachineConstraints extends TransactionConstraints {
         addAllowedTransactionType(TransactionType.TRANSFER);
         addAllowedTransactionType(TransactionType.END_OF_SESSION);
 
-        // TODO Set actual limits
-        setPerTransactionLimit(TransactionType.DEPOSIT, 100000);
-        setDailyLimit(TransactionType.DEPOSIT, 200000);
+        setPerTransactionLimit(TransactionType.DEPOSIT, 200000);
+        setDailyLimit(TransactionType.DEPOSIT, 500000);
 
-        setPerTransactionLimit(TransactionType.WITHDRAW, 100000);
-        setDailyLimit(TransactionType.DEPOSIT, 200000);
+        setPerTransactionLimit(TransactionType.WITHDRAW, 200000);
+        setDailyLimit(TransactionType.DEPOSIT, 500000);
 
-        setPerTransactionLimit(TransactionType.TRANSFER, 100000);
-        setDailyLimit(TransactionType.TRANSFER, 200000);
+        setPerTransactionLimit(TransactionType.TRANSFER, 1000000);
+        setDailyLimit(TransactionType.TRANSFER, 1000000);
     }
 
 }
