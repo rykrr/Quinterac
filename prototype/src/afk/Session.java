@@ -2,6 +2,7 @@ package afk;
 
 import afk.transactions.Transaction;
 import afk.transactions.TransactionType;
+import afk.transactions.constraints.TransactionConstraints;
 import afk.transactions.script.TransactionCancelledException;
 import afk.transactions.script.TransactionScript;
 
@@ -13,12 +14,14 @@ import java.util.Map;
 public class Session {
 
     private SessionType sessionType;
+    private TransactionConstraints sessionConstraints;
 
     // This is built from the valid account list
     private Map<String, Account> accounts = new HashMap<>();
 
     public Session(SessionType sessionType, List<Account> validAccounts) {
         this.sessionType = sessionType;
+        this.sessionConstraints = sessionType.getConstraints();
 
         for(Account account : validAccounts)
             accounts.put(account.getNumber(), account);
@@ -36,6 +39,12 @@ public class Session {
         do {
             System.out.print(sessionType.getName() + "> ");
             command = TransactionType.stringToEnum(console.readString());
+
+            if(!sessionConstraints.isAllowedTransaction(command)) {
+                System.out.println(sessionType.getName()
+                        + " does not have permission to run \""  + command.getCommand() + "\"");
+                continue;
+            }
 
             if(command == null) {
                 System.out.println("Error: Command not found");

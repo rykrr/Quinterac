@@ -14,29 +14,31 @@ public class TransactionConstraints {
     private Map<TransactionType, Integer> perTransactionLimits   = new HashMap<TransactionType, Integer>();
     private Map<TransactionType, Integer> dailyLimits            = new HashMap<TransactionType, Integer>();
 
-    protected void addAllowedTransactionType(TransactionType code) {
-        allowedTransactionTypes.add(code);
+    protected void addAllowedTransactionType(TransactionType type) {
+        allowedTransactionTypes.add(type);
     }
 
-    protected void setPerTransactionLimit(TransactionType code, int limit) {
-        perTransactionLimits.put(code, limit);
+    protected void setPerTransactionLimit(TransactionType type, int limit) {
+        perTransactionLimits.put(type, limit);
     }
 
-    protected void setDailyLimit(TransactionType code, int limit) {
-        dailyLimits.put(code, limit);
+    protected void setDailyLimit(TransactionType type, int limit) {
+        dailyLimits.put(type, limit);
     }
 
-    private int getNullable(Map<TransactionType, Integer> map, TransactionType code) {
-        if (map.containsKey(code))
-            return map.get(code).intValue();
+    private int getNullable(Map<TransactionType, Integer> map, TransactionType type) {
+        if (map.containsKey(type))
+            return map.get(type).intValue();
         return 0;
     }
 
-    public int getPerTransactionLimit(TransactionType code) {
-        return getNullable(perTransactionLimits, code);
+    public int getPerTransactionLimit(TransactionType type) {
+        return getNullable(perTransactionLimits, type);
     }
 
-    public int getDailyLimit(TransactionType code) {
-        return getNullable(dailyLimits, code);
+    public int getDailyLimit(TransactionType type) {
+        return getNullable(dailyLimits, type);
     }
+
+    public boolean isAllowedTransaction(TransactionType type) { return allowedTransactionTypes.contains(type); }
 }
