@@ -25,4 +25,8 @@ public class Withdrawal extends Transaction {
         source.addTransaction(this);
     }
 
+    public String getSuccessMessage() {
+        return "Successfully withdrew $" + (getAmount()/100)
+                + " from account #" + getSourceAccount().getNumber();
+    }
 }

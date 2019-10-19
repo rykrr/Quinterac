@@ -42,6 +42,8 @@ public abstract class Transaction {
         return amount;
     }
 
+    public abstract String getSuccessMessage();
+
     public String toString() {
         return type.getShortCode() + ' '
                 + source.getNumber() + ' '
