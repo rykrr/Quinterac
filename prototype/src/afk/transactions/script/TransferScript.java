@@ -14,6 +14,9 @@ public class TransferScript extends TransactionScript<Transfer> {
     @Override
     public Transfer execute(Console console, SessionType type, Map<String, Account> accounts) throws TransactionCancelledException {
 
+        if(accounts.size() == 1)
+            throw new TransactionCancelledException("Error: There are no accounts to transfer to");
+
         Account src = getAccount("Transfer from", console, accounts);
         Account dst = getAccount("Transfer to  ", console, accounts);
 
