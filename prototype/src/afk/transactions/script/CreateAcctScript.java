@@ -40,10 +40,12 @@ public class CreateAcctScript extends TransactionScript<CreateAcct> {
                 System.out.println("Please enter an account name that length between 3 and 30 alphanumeric characters\n");
                 inputName = console.readString();
             }
+			/*
             else if(inputName.charAt(0) == '0'){
                 System.out.println("Please enter an account name that does not beginning with 0\n");
                 inputName = console.readString();
             }
+			*/
         }
 
         Account newAccount = new Account(inputAcc);
