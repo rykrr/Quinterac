@@ -27,11 +27,11 @@ public class Session {
     public List<Transaction> run(Console console) {
         List<Transaction> transactions = new ArrayList<>();
 
-        Transaction transaction;
         TransactionType command;
         TransactionScript<?> script;
 
         do {
+            System.out.print(sessionType.getName() + "> ");
             command = TransactionType.stringToEnum(console.readString());
 
             if(command == null) {

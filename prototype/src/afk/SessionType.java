@@ -5,12 +5,18 @@ import afk.transactions.constraints.MachineConstraints;
 import afk.transactions.constraints.TransactionConstraints;
 
 public enum SessionType {
-    AGENT(new AgentConstraints()), MACHINE(new MachineConstraints());
+    AGENT("agent", new AgentConstraints()), MACHINE("atm", new MachineConstraints());
 
+    private String name;
     private TransactionConstraints constraints;
 
-    SessionType(TransactionConstraints constraints) {
+    SessionType(String name, TransactionConstraints constraints) {
+        this.name = name;
         this.constraints = constraints;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public TransactionConstraints getConstraints() {
