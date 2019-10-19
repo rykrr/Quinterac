@@ -6,8 +6,8 @@ public enum TransactionType {
     DEPOSIT         ("DEP", "deposit",      new DepositScript()),
     WITHDRAW        ("WDR", "withdraw",     new WithdrawalScript()),
     TRANSFER        ("XFR", "transfer",     new TransferScript()),
-    CREATE_ACCOUNT  ("NEW", "createacct",   new Placeholder()),
-    DELETE_ACCOUNT  ("DEL", "deleteacct",   new Placeholder()),
+    CREATE_ACCOUNT  ("NEW", "createacct",   new CreateAcctScript()),
+    DELETE_ACCOUNT  ("DEL", "deleteacct",   new DeleteAcctScript()),
     END_OF_SESSION  ("EOS", "logout",       new LogoutScript());
 
     private String shortCode;
