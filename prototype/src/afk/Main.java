@@ -21,6 +21,7 @@ public class Main {
     public static void main(String[] args) {
         // initialize the console for the banking system
     	Console console = new Console();
+    	System.out.println("Welcome to AFK Quinterac!");
     	// keep checking user input until the user types in exit
     	while (true) {
         new Main(console, args[0], args[1]);
