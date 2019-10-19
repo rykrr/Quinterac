@@ -47,14 +47,14 @@ public class Session {
             System.out.print(sessionType.getName() + "> ");
             command = TransactionType.stringToEnum(console.readString());
 
-            if(!sessionConstraints.isAllowedTransaction(command)) {
-                System.out.println(sessionType.getName()
-                        + " does not have permission to run \""  + command.getCommand() + "\"");
+            if(command == null) {
+                System.out.println("Error: Command not found");
                 continue;
             }
 
-            if(command == null) {
-                System.out.println("Error: Command not found");
+            if(!sessionConstraints.isAllowedTransaction(command)) {
+                System.out.println(sessionType.getName()
+                        + " does not have permission to run \""  + command.getCommand() + "\"");
                 continue;
             }
 
