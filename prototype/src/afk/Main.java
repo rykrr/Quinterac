@@ -31,7 +31,7 @@ public class Main {
     public void writeFile(String[] summary, String filepath) {
     	try {
     		// write the transaction summary to the output file
-			Writer output = new BufferedWriter(new FileWriter("filepath", true));
+			Writer output = new BufferedWriter(new FileWriter(filepath, true));
 			for (String line : summary) {
 				output.append(line);
 			}
@@ -43,6 +43,7 @@ public class Main {
     
     public Main(Console console, String validAccountsListPath, String transactionSummaryPath) {
     	System.out.println("Type 'login' to begin");
+    	System.out.print("> ");
     	String start = console.readString();
     	// read console for "login" command
     	if(start.equals("login")) {
@@ -52,7 +53,8 @@ public class Main {
 				accountlist = AccountListReader.read(validAccountsListPath);
     		boolean sessionfinished = false;
     		while (!sessionfinished) {
-    		System.out.println("Please enter login type (‘machine’ or ‘agent’)");
+    		System.out.println("Please enter a login type (‘machine’ or ‘agent’), type 'cancel' to cancel");
+    		System.out.print("> ");
     		String input = console.readString();
 
     		// open a session for Machine or Agent, wait and check if the session finished all transactions
@@ -67,6 +69,7 @@ public class Main {
                 	summary[i] = transactions.get(i).toString();
 
     			writeFile(summary, transactionSummaryPath);
+    			sessionfinished = true;
     		}
     		else if (input.equals("agent")) {
     			Session session = new Session(SessionType.AGENT, accountlist);
@@ -77,8 +80,12 @@ public class Main {
 
 				for(int i = 0; i < transactions.size(); i++)
 					summary[i] = transactions.get(i).toString();
-
+				
 				writeFile(summary, transactionSummaryPath);
+				sessionfinished = true;
+    		}
+    		else if (input.equals("cancel")) {
+    			sessionfinished = true;
     		}
     		else if (input.length()>0) {
     			System.out.println("Error: invalid login type");
