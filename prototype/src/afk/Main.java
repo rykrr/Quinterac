@@ -8,6 +8,7 @@ import java.io.Writer;
 import java.util.List;
 
 import afk.AccountListReader.AccountListReaderException;
+import afk.transactions.Transaction;
 
 public class Main {
 
@@ -52,30 +53,31 @@ public class Main {
     		while (!sessionfinished) {
     		System.out.println("Please enter login type (‘machine’ or ‘agent’)");
     		String input = console.readString();
+
     		// open a session for Machine or Agent, wait and check if the session finished all transactions
     		if(input.equals("machine")) {
     			Session session = new Session(SessionType.MACHINE, accountlist);
-    			while(!sessionfinished) {
-    				sessionfinished = session.finished;
-        			}
+    			List<Transaction> transactions = session.run(console);
+
     			// get the summary array of the session
-    			String[] summary = session.summary;
-    			writeFile(summary, transactionSummaryPath);
-    			}
-    		else if (input.equals("agent")) {
-    			Session session = new Session(SessionType.AGENT, accountlist);
-    			while(!sessionfinished) {
-    				sessionfinished = session.finished;
-        			}
-    			String[] summary = session.summary;
+                String[] summary = new String[transactions.size()];
+
+                for(int i = 0; i < transactions.size(); i++)
+                	summary[i] = transactions.get(i).toString();
+
     			writeFile(summary, transactionSummaryPath);
     		}
-    		else if (input.equals("logout")) {
-    			// if user directly logs out then write EOS to the summary file
-    			String[] array = new String[1];
-    			array[0] = "EOS 0000000 000 0000000 ***";
-    			sessionfinished = true;
-    			writeFile(array, transactionSummaryPath);
+    		else if (input.equals("agent")) {
+    			Session session = new Session(SessionType.AGENT, accountlist);
+				List<Transaction> transactions = session.run(console);
+
+				// get the summary array of the session
+				String[] summary = new String[transactions.size()];
+
+				for(int i = 0; i < transactions.size(); i++)
+					summary[i] = transactions.get(i).toString();
+
+				writeFile(summary, transactionSummaryPath);
     		}
     		else if (input.length()>0) {
     			System.out.println("Error: invalid login type");

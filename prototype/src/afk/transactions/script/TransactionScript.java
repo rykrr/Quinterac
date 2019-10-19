@@ -15,7 +15,6 @@ public abstract class TransactionScript<T extends Transaction> {
     public static final NullAccount nullAccount = new NullAccount();
 
     protected static Account getAccount(String prompt, Console console, Map<String, Account> accounts) throws TransactionCancelledException {
-        System.out.print(prompt + " #");
         String number = null;
 
         do {
@@ -23,7 +22,8 @@ public abstract class TransactionScript<T extends Transaction> {
                 System.out.println("Error: Account does not exist");
 
             try {
-                number = console.readAccount(prompt);
+                System.out.print(prompt + " #");
+                number = console.readAccount();
 
                 if(number.equals(nullAccount.getNumber()))
                     throw new TransactionCancelledException();
@@ -39,11 +39,11 @@ public abstract class TransactionScript<T extends Transaction> {
 
 
     protected static int getAmount(String prompt, Console console) throws TransactionCancelledException {
-        System.out.print(prompt + " ¢");
         int amount = 0;
 
         do {
             try {
+                System.out.print(prompt + " ¢");
                 amount = console.readAmount();
 
                 if(amount == 0)

@@ -8,7 +8,7 @@ public enum TransactionType {
     TRANSFER        ("XFR", "transfer",     new TransferScript()),
     CREATE_ACCOUNT  ("NEW", "createacct",   new Placeholder()),
     DELETE_ACCOUNT  ("DEL", "deleteacct",   new Placeholder()),
-    END_OF_SESSION  ("EOS", "logout",       new Placeholder());
+    END_OF_SESSION  ("EOS", "logout",       new LogoutScript());
 
     private String shortCode;
     private String command;
