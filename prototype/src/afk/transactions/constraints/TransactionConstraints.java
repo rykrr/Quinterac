@@ -41,4 +41,8 @@ public class TransactionConstraints {
     }
 
     public boolean isAllowedTransaction(TransactionType type) { return allowedTransactionTypes.contains(type); }
+
+    public Set<TransactionType> getAllowedTransactionTypes() {
+        return new HashSet<>(allowedTransactionTypes);
+    }
 }

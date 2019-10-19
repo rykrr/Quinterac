@@ -6,10 +6,7 @@ import afk.transactions.constraints.TransactionConstraints;
 import afk.transactions.script.TransactionCancelledException;
 import afk.transactions.script.TransactionScript;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Session {
 
@@ -27,6 +24,16 @@ public class Session {
             accounts.put(account.getNumber(), account);
 
         System.out.println("Welcome! You have successfully logged in as " + sessionType.getName());
+        System.out.print("Available commands: ");
+
+        TransactionType[] commands = sessionConstraints.getAllowedTransactionTypes().toArray(new TransactionType[0]);
+        for(int i = 0; i < commands.length; i++) {
+            System.out.print(commands[i].getCommand());
+
+            if(i < commands.length-1)
+                System.out.print(", ");
+        }
+        System.out.println();
     }
 
     public List<Transaction> run(Console console) {
