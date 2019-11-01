@@ -1,8 +1,0 @@
-login
-agent
-deleteacct
-2000000
-TEST
-transfer
-1000000
-2000000

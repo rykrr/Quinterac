@@ -1,9 +1,0 @@
-Welcome to AFK Quinterac!
-Type 'login' to begin
->
-Please enter login type (‘machine’ or ‘agent’)
->
-You have successfully logged out
->
-Please enter login type (‘machine’ or ‘agent’)
->

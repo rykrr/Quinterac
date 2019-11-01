@@ -1,4 +1,0 @@
-login
-agent
-transfer
-3000000

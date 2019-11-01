@@ -1,5 +1,0 @@
-login
-agent
-deposit
-logout
-deposit

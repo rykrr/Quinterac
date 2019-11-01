@@ -1,7 +1,0 @@
-login
-agent
-deleteacct
-1000000
-TEST
-deposit
-1000000
