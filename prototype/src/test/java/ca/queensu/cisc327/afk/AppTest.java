@@ -73,9 +73,10 @@ public class AppTest {
         String[] args = { valid_account_list_file.getAbsolutePath(), transaction_summary_file.getAbsolutePath() };
 
         // setup user input
-        String userInput = String.join(System.lineSeparator(), terminal_input);
-        ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
-        System.setIn(in);
+        //String userInput = String.join(System.lineSeparator(), terminal_input);
+        //ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
+        //System.setIn(in);
+        FakeConsole fakeConsole = new FakeConsole(terminal_input);
 
         // setup stdin & stdout:
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -84,7 +85,7 @@ public class AppTest {
         System.setErr(new PrintStream(errContent));
 
         // run the program
-        Main.main(args);
+        Main.fakeMain(fakeConsole, args);
 
         // capture terminal outputs:
         String[] printed_lines = outContent.toString().split("[\r\n]+");

@@ -1,5 +1,6 @@
 package ca.queensu.cisc327.afk;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FakeConsole extends Console {
@@ -7,7 +8,7 @@ public class FakeConsole extends Console {
     private List<String> inputs;
 
     public FakeConsole(List<String> inputs) {
-        this.inputs = inputs;
+        this.inputs = new ArrayList<>(inputs);
     }
 
     public String readString() {

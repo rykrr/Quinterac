@@ -19,16 +19,19 @@ public class Main {
      *  args[2] Output: Transaction summary file
      */
     public static void main(String[] args) {
-        // initialize the console for the banking system
-    	ca.queensu.cisc327.afk.Console console = new Console();
-    	System.out.println("Welcome to AFK Quinterac!");
-    	// keep checking user input until the user types in exit
-    	while (true) {
-        	new Main(console, args[0], args[1]);
-    	}
+		// initialize the console for the banking system
+    	fakeMain(new Console(), args);
     }
-    
-    public void writeFile(String[] summary, String filepath) {
+
+    public static void fakeMain(Console console, String[] args) {
+		// keep checking user input until the user types in exit
+		System.out.println("Welcome to AFK Quinterac!");
+		while (true) {
+			new Main(console, args[0], args[1]);
+		}
+	}
+
+	public void writeFile(String[] summary, String filepath) {
     	try {
     		// write the transaction summary to the output file
 			Writer output = new BufferedWriter(new FileWriter(filepath, true));
