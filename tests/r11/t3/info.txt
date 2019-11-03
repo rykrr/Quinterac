@@ -1,0 +1,1 @@
+R7T2: transfer/account_format/reject_alpha

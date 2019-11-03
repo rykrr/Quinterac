@@ -1,0 +1,8 @@
+login
+agent
+deleteacct
+1000000
+login 
+agent
+deposite
+1000000

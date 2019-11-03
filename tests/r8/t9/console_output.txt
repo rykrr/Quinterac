@@ -1,0 +1,12 @@
+>
+>
+atm>
+Account#
+Amount¢
+atm>
+Account#
+Amount¢
+atm>
+Account#
+Amount¢
+Error*exceeds daily limit

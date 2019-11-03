@@ -1,0 +1,10 @@
+login
+machine
+transfer
+1000000
+2000000
+1000000
+transfer
+1000000
+2000000
+1
