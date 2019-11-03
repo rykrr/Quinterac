@@ -73,7 +73,6 @@ public class AppTest {
             List<String> expected_terminal_tails, //
             List<String> expected_transaction_summaries)
 			throws Exception {
-        System.out.println("Hello world");
         // setup parameters for the program to run
         // create temporary files
         File valid_account_list_file = File.createTempFile("valid-accounts", ".tmp");
@@ -104,7 +103,7 @@ public class AppTest {
         // compare the tail of the terminal outputs:
         int diff = printed_lines.length - expected_terminal_tails.size();
         for (int i = 0; i < expected_terminal_tails.size(); ++i) {
-            assertEquals(expected_terminal_tails.get(i), printed_lines[i - 1 + diff]);
+            assertEquals(expected_terminal_tails.get(i), printed_lines[i + diff]);
         }
 
         // compare output file content to the expected content
