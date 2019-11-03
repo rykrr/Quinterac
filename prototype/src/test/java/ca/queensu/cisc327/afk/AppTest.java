@@ -2,12 +2,17 @@ package ca.queensu.cisc327.afk;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,10 +24,20 @@ public class AppTest {
 
     @Test
     public void testAppR1() throws Exception {
-        runAndTest(Arrays.asList("login"), //
-                Arrays.asList("123456"), //
-                Arrays.asList("123456", "writing transactions!"), //
-                Arrays.asList("hmm i am a transaction."));
+        runAndTest(Arrays.asList("login", "machine", "logout"), //
+                Arrays.asList("0000000", "1000000", "2000000"), //
+                Arrays.asList("Welcome to AFK Quinterac!", "Type 'login' to begin", "> ", "> "), //
+                Arrays.asList("EOS 0000000 000 0000000 ***"));
+    }
+    
+    public List<String> getListFromFile(String path) throws IOException, FileNotFoundException {
+    	BufferedReader reader = new BufferedReader(new FileReader(path));
+    	List<String> expected = new ArrayList<String>();
+    	String line;
+    	while ((line= reader.readLine()) != null) {
+    		expected.add(line);
+    	}
+    	return expected;
     }
 
     /**
