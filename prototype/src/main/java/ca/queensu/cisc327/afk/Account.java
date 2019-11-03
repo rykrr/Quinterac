@@ -1,7 +1,7 @@
-package afk;
+package ca.queensu.cisc327.afk;
 
-import afk.transactions.Transaction;
-import afk.transactions.TransactionType;
+import ca.queensu.cisc327.afk.transactions.Transaction;
+import ca.queensu.cisc327.afk.transactions.TransactionType;
 
 import java.util.HashMap;
 import java.util.Map;

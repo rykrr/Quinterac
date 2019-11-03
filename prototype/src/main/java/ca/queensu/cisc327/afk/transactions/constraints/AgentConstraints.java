@@ -1,6 +1,6 @@
-package afk.transactions.constraints;
+package ca.queensu.cisc327.afk.transactions.constraints;
 
-import afk.transactions.TransactionType;
+import ca.queensu.cisc327.afk.transactions.TransactionType;
 
 public class AgentConstraints extends TransactionConstraints {
 

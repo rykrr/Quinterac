@@ -1,12 +1,12 @@
-package afk.transactions.script;
+package ca.queensu.cisc327.afk.transactions.script;
 
-import afk.Account;
-import afk.Console;
-import afk.NullAccount;
-import afk.SessionType;
-import afk.transactions.Logout;
-import afk.transactions.Transaction;
-import afk.transactions.TransactionType;
+import ca.queensu.cisc327.afk.Account;
+import ca.queensu.cisc327.afk.Console;
+import ca.queensu.cisc327.afk.NullAccount;
+import ca.queensu.cisc327.afk.SessionType;
+import ca.queensu.cisc327.afk.transactions.Logout;
+import ca.queensu.cisc327.afk.transactions.Transaction;
+import ca.queensu.cisc327.afk.transactions.TransactionType;
 
 import java.util.Map;
 

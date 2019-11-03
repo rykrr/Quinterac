@@ -1,6 +1,6 @@
-package afk.transactions;
-import afk.Account;
-import afk.NullAccount;
+package ca.queensu.cisc327.afk.transactions;
+import ca.queensu.cisc327.afk.Account;
+import ca.queensu.cisc327.afk.NullAccount;
 
 public class CreateAcct extends Transaction {
 

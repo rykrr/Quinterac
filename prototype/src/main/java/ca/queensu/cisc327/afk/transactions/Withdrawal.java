@@ -1,10 +1,10 @@
-package afk.transactions;
+package ca.queensu.cisc327.afk.transactions;
 
-import afk.Account;
-import afk.NullAccount;
-import afk.SessionType;
-import afk.transactions.constraints.exceptions.DailyLimitViolation;
-import afk.transactions.constraints.exceptions.TransactionLimitViolation;
+import ca.queensu.cisc327.afk.Account;
+import ca.queensu.cisc327.afk.NullAccount;
+import ca.queensu.cisc327.afk.SessionType;
+import ca.queensu.cisc327.afk.transactions.constraints.exceptions.DailyLimitViolation;
+import ca.queensu.cisc327.afk.transactions.constraints.exceptions.TransactionLimitViolation;
 
 public class Withdrawal extends Transaction {
 

@@ -13,7 +13,7 @@ import java.util.List;
 
 import org.junit.*;
 
-import ca.queensu.cisc327.App;
+import ca.queensu.cisc327.afk.Main;
 
 public class AppTest {
 

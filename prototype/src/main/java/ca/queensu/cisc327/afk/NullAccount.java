@@ -1,6 +1,6 @@
-package afk;
+package ca.queensu.cisc327.afk;
 
-import afk.transactions.Transaction;
+import ca.queensu.cisc327.afk.transactions.Transaction;
 
 public class NullAccount extends Account {
 

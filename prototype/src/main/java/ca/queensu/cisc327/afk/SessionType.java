@@ -1,8 +1,8 @@
-package afk;
+package ca.queensu.cisc327.afk;
 
-import afk.transactions.constraints.AgentConstraints;
-import afk.transactions.constraints.MachineConstraints;
-import afk.transactions.constraints.TransactionConstraints;
+import ca.queensu.cisc327.afk.transactions.constraints.AgentConstraints;
+import ca.queensu.cisc327.afk.transactions.constraints.MachineConstraints;
+import ca.queensu.cisc327.afk.transactions.constraints.TransactionConstraints;
 
 public enum SessionType {
     AGENT("agent", new AgentConstraints()), MACHINE("machine", new MachineConstraints());

@@ -1,4 +1,4 @@
-package afk;
+package ca.queensu.cisc327.afk;
 
 import java.io.BufferedReader;
 import java.io.IOException;

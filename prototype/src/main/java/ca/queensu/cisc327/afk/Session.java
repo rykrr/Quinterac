@@ -1,10 +1,10 @@
-package afk;
+package ca.queensu.cisc327.afk;
 
-import afk.transactions.Transaction;
-import afk.transactions.TransactionType;
-import afk.transactions.constraints.TransactionConstraints;
-import afk.transactions.script.TransactionCancelledException;
-import afk.transactions.script.TransactionScript;
+import ca.queensu.cisc327.afk.transactions.Transaction;
+import ca.queensu.cisc327.afk.transactions.TransactionType;
+import ca.queensu.cisc327.afk.transactions.constraints.TransactionConstraints;
+import ca.queensu.cisc327.afk.transactions.script.TransactionCancelledException;
+import ca.queensu.cisc327.afk.transactions.script.TransactionScript;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package afk;
+package ca.queensu.cisc327.afk;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
 
-import afk.AccountListReader.AccountListReaderException;
-import afk.transactions.Transaction;
+import ca.queensu.cisc327.afk.AccountListReader.AccountListReaderException;
+import ca.queensu.cisc327.afk.transactions.Transaction;
 
 public class Main {
 
@@ -20,11 +20,11 @@ public class Main {
      */
     public static void main(String[] args) {
         // initialize the console for the banking system
-    	Console console = new Console();
+    	ca.queensu.cisc327.afk.Console console = new Console();
     	System.out.println("Welcome to AFK Quinterac!");
     	// keep checking user input until the user types in exit
     	while (true) {
-        new Main(console, args[0], args[1]);
+        	new Main(console, args[0], args[1]);
     	}
     }
     

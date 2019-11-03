@@ -1,6 +1,6 @@
-package afk.transactions;
+package ca.queensu.cisc327.afk.transactions;
 
-import afk.transactions.script.*;
+import ca.queensu.cisc327.afk.transactions.script.*;
 
 public enum TransactionType {
     DEPOSIT         ("DEP", "deposit",      new DepositScript()),

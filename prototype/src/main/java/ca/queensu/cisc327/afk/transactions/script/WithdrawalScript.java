@@ -1,12 +1,12 @@
-package afk.transactions.script;
+package ca.queensu.cisc327.afk.transactions.script;
 
-import afk.Account;
-import afk.Console;
-import afk.SessionType;
-import afk.transactions.Deposit;
-import afk.transactions.Withdrawal;
-import afk.transactions.constraints.exceptions.DailyLimitViolation;
-import afk.transactions.constraints.exceptions.TransactionLimitViolation;
+import ca.queensu.cisc327.afk.Account;
+import ca.queensu.cisc327.afk.Console;
+import ca.queensu.cisc327.afk.SessionType;
+import ca.queensu.cisc327.afk.transactions.Deposit;
+import ca.queensu.cisc327.afk.transactions.Withdrawal;
+import ca.queensu.cisc327.afk.transactions.constraints.exceptions.DailyLimitViolation;
+import ca.queensu.cisc327.afk.transactions.constraints.exceptions.TransactionLimitViolation;
 
 import java.util.Map;
 

@@ -1,7 +1,7 @@
-package afk.transactions.script;
-import afk.*;
-import afk.transactions.CreateAcct;
-import afk.transactions.TransactionType;
+package ca.queensu.cisc327.afk.transactions.script;
+import ca.queensu.cisc327.afk.*;
+import ca.queensu.cisc327.afk.transactions.CreateAcct;
+import ca.queensu.cisc327.afk.transactions.TransactionType;
 
 import java.util.Map;
 

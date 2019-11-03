@@ -1,4 +1,4 @@
-package afk.transactions.script;
+package ca.queensu.cisc327.afk.transactions.script;
 
 public class TransactionCancelledException extends RuntimeException {
 

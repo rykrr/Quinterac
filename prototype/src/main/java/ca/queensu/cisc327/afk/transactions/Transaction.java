@@ -1,6 +1,6 @@
-package afk.transactions;
+package ca.queensu.cisc327.afk.transactions;
 
-import afk.Account;
+import ca.queensu.cisc327.afk.Account;
 
 public abstract class Transaction {
 
