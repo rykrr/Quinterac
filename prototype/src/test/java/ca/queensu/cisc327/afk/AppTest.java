@@ -69,7 +69,7 @@ public class AppTest {
         System.setErr(new PrintStream(errContent));
 
         // run the program
-        App.main(args);
+        Main.main(args);
 
         // capture terminal outputs:
         String[] printed_lines = outContent.toString().split("[\r\n]+");
