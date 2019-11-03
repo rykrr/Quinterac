@@ -1,0 +1,15 @@
+Welcome to AFK Quinterac!
+Type 'login' to begin
+>
+Please enter login type (‘machine’ or ‘agent’)
+>
+Successfully logged in as machine. Please choose one of the services: ‘withdraw’, ‘deposit’, ‘transfer’
+Type ‘logout’ anytime to exit the system
+atm>
+Error: you do not have sufficient privileges to create an account, please log in as agent
+atm>
+You have successfully logged out
+>
+Error: invalid command
+Type ‘login’ to begin
+>
