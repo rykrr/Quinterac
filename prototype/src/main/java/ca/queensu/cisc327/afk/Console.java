@@ -1,5 +1,7 @@
 package ca.queensu.cisc327.afk;
 
+import com.sun.nio.sctp.IllegalReceiveException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
