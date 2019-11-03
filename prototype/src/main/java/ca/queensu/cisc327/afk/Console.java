@@ -3,23 +3,20 @@ package ca.queensu.cisc327.afk;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Console {
-
+	Scanner scanner = null;
     public Console() {
-    	
+    	if (scanner == null) {
+    		scanner = new Scanner(System.in);
+    	}
     }
     
     //read the next line of console input
     public String readString() {
-    	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    	try {
-			String line = reader.readLine();
+    		String line = scanner.nextLine();
 			return line;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return "";
-		}
     }
     
     // read a 7 digit account number
