@@ -3,11 +3,9 @@ Type 'login' to begin
 >
 Please enter a login type (‘machine’ or ‘agent’)
 >
-Successfully logged in as machine. Please choose one of the services: ‘withdraw’, ‘deposit’, ‘transfer’
-Type ‘logout’ anytime to exit the system
 machine>
-You have successfully logged out
+Successfully logged out
 >
 Error: invalid command
-Type ‘login’ to begin
+Type 'login' to begin
 >

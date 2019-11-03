@@ -1,6 +1,6 @@
 #!/usr/bin/expect
 
-set timeout 2
+set timeout 1
 
 log_file ../../log.txt
 
@@ -16,6 +16,11 @@ spawn java -jar ../../../target/afkQuinterac-1.0-SNAPSHOT.jar accounts.txt ../..
 
 set i 0
 foreach line $expect_lines {
+	
+	set mx [string match "*>*" $line]
+	if { $mx == 0 } { set mx [string match "*¢*" $line] } 
+	if { $mx == 0 } { set mx [string match "*#*" $line] } 
+
 	expect {
 		$line {}
 		timeout {
@@ -24,13 +29,13 @@ foreach line $expect_lines {
 		}
 	}
 	
-	if { $i < [llength $input_lines] } {
-		set s [lindex $input_lines $i]
-		send "$s\n"
+	if { $mx == 1 } { 
+		if { $i < [llength $input_lines] } {
+			set s [lindex $input_lines $i]
+			send "$s\n"
+			incr i 1
+		}
 	}
-	
-	
-	incr i 1
 }
 
 exit 0
