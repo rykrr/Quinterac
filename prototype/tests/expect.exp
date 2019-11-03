@@ -1,0 +1,28 @@
+#!/usr/bin/expect
+
+set timeout 2
+
+set expect_file [open [lindex $argv 0]]
+set expect_lines [split [read $expect_file] "\n"]
+close $expect_file
+
+set input_file [open [lindex $argv 1]]
+set input_line [split [read $input_file] "\n"]
+close $input_file
+
+spawn java -jar ../../
+
+set i 0
+foreach line $expect_lines {
+	puts "X"
+	expect {
+		$line {puts "OK"}
+		timeout {exit 1}
+	}
+	puts "Y"
+	
+	send [lindex $input_line $i]
+	incr i 1
+}
+
+exit 0

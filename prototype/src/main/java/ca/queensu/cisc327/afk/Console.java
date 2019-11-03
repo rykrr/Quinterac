@@ -1,21 +1,24 @@
 package ca.queensu.cisc327.afk;
 
+import com.sun.nio.sctp.IllegalReceiveException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Console {
 
-    public Console() {
-    	
-    }
-    
+	private BufferedReader reader = null;
+
+	public Console() {
+	    if(reader == null)
+			reader = new BufferedReader(new InputStreamReader(System.in));
+	}
+
     //read the next line of console input
     public String readString() {
-    	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     	try {
-			String line = reader.readLine();
-			return line;
+			return reader.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "";

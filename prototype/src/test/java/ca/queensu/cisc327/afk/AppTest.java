@@ -62,7 +62,7 @@ public class AppTest {
             List<String> expected_terminal_tails, //
             List<String> expected_transaction_summaries)
 			throws Exception {
-
+        System.out.println("Hello world");
         // setup parameters for the program to run
         // create temporary files
         File valid_account_list_file = File.createTempFile("valid-accounts", ".tmp");
@@ -73,10 +73,9 @@ public class AppTest {
         String[] args = { valid_account_list_file.getAbsolutePath(), transaction_summary_file.getAbsolutePath() };
 
         // setup user input
-        //String userInput = String.join(System.lineSeparator(), terminal_input);
-        //ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
-        //System.setIn(in);
-        FakeConsole fakeConsole = new FakeConsole(terminal_input);
+        String userInput = String.join(System.lineSeparator(), terminal_input);
+        ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(in);
 
         // setup stdin & stdout:
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -84,8 +83,9 @@ public class AppTest {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
 
+        FakeConsole fake = new FakeConsole(terminal_input);
         // run the program
-        Main.fakeMain(fakeConsole, args);
+        Main.fakeMain(fake, args);
 
         // capture terminal outputs:
         String[] printed_lines = outContent.toString().split("[\r\n]+");
