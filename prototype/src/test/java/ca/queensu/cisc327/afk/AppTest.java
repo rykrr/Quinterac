@@ -1,4 +1,4 @@
-package ca.queensu.cisc327;
+package ca.queensu.cisc327.afk;
 
 import static org.junit.Assert.assertEquals;
 
