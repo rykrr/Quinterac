@@ -1,4 +1,4 @@
-name: Maven/Expect CI
+name: Quinterac CI
 
 on: [push]
 

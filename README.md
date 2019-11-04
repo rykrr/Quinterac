@@ -1,5 +1,5 @@
 # Quinterac
-[![](https://github.com/rykrr/Quinterac/workflows/Maven/Expect%20CI/badge.svg)](https://github.com/rykrr/Quinterac/actions)
+[![](https://github.com/rykrr/Quinterac/workflows/Quinterac%20CI/badge.svg)](https://github.com/rykrr/Quinterac/actions)
 
 - CISC/CMPE 327 group 17
 ## Assignment 1: Test Plans
