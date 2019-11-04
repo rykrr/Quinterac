@@ -2,5 +2,7 @@
 
 pushd frontend/tests
 chmod 777 test.sh
-bash test.sh
+status=`bash test.sh`
 popd
+
+exit $status
