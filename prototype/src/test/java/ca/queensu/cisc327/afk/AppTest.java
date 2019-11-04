@@ -1,6 +1,7 @@
 package ca.queensu.cisc327.afk;
 
 import static org.junit.Assert.assertEquals;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -21,12 +22,12 @@ import org.junit.*;
 import ca.queensu.cisc327.afk.Main;
 
 public class AppTest {
-	//@Rule
-    //public final ExpectedSystemExit exit = ExpectedSystemExit.none();
+	@Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 	
     @Test
     public void testAppR1() throws Exception {
-        runAndTest(Arrays.asList("login", "machine", "logout"), //
+        runAndTest(Arrays.asList("login", "machine", "withdraw"), //
                 Arrays.asList("0000000", "1000000", "2000000"), //
                 Arrays.asList("Type 'login' to begin", "> Please enter a login type (‘machine’ or ‘agent’), type 'cancel' to cancel",
                 		"> Welcome! You have successfully logged in as machine", "Available commands: withdraw, transfer, logout, deposit", "machine> Successfully logged out"), //
@@ -37,7 +38,7 @@ public class AppTest {
     	runAndTest(Arrays.asList("login", "machine", "logout"), //
     			Arrays.asList("0000000", "1000000", "2000000"), //
     			Arrays.asList("Type 'login' to begin", "> Please enter a login type (‘machine’ or ‘agent’), type 'cancel' to cancel",
-    					"> Welcome! You have successfully logged in as machine", "Available commands: withdraw, transfer, logout, deposit", "machine> Successfully logged out"), //
+    					"> Welcome! You have successfully logged in as machine", "Available commands: withdraw, transfer, logout, deposit", "machine> Successfully logged out" , "> "), //
     			Arrays.asList(""));
     }
     
@@ -84,18 +85,21 @@ public class AppTest {
 
         // setup user input
         String userInput = String.join(System.lineSeparator(), terminal_input);
+        System.out.println(userInput);
         ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(in);
 
         // setup stdin & stdout:
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
+        //System.setOut(new PrintStream(outContent));
+        //System.setErr(new PrintStream(errContent));
 
         // run the program
-
+        System.out.println("before main");
+        exit.expectSystemExit();
         Main.main(args);
+        System.out.println("after main");
 
         // capture terminal outputs:
         String[] printed_lines = outContent.toString().split("[\r\n]+");

@@ -17,8 +17,13 @@ public class Console {
     
     //read the next line of console input
     public String readString() {
+    	try {
     		String line = scanner.nextLine();
-			return line;
+    		return line;
+    	} catch (Exception e) {
+    		System.exit(1);
+    		return "no input";
+    	}
     }
     
     // read a 7 digit account number
