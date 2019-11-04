@@ -1,0 +1,7 @@
+login
+agent
+deleteacct
+1000000
+TEST
+withdraw
+1000000

@@ -1,0 +1,15 @@
+Welcome to AFK Quinterac!
+Type ‘login’ to begin
+>
+Please enter login type (‘machine’ or ‘agent’)
+>
+Successfully logged in as agent. Please choose one of the services: ‘withdraw’, ‘deposit’, ‘transfer’, ‘createacct’, ‘deleteacct’
+>
+Please enter a seven-digit account number not beginning with 0 (enter ‘0000000’ to cancel)
+>
+Please enter an account name that length between 3 and 30 alphanumeric characters that do not beginning with 0
+>
+Type ‘logout’ anytime to exit the system
+>
+
+
