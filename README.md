@@ -1,4 +1,6 @@
 # Quinterac
+[![](https://github.com/rykrr/Quinterac/workflows/Maven/Expect%20CI/badge.svg)](https://github.com/rykrr/Quinterac/actions)
+
 - CISC/CMPE 327 group 17
 ## Assignment 1: Test Plans
 Please see TestPlan.md for the test plan documentation, and test_cases.pdf under tests folder for the table.
