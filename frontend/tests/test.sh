@@ -11,9 +11,7 @@ clean() {
 fail() {
 	echo "[ FAIL ]"
 	if [[ $1 -eq 0 ]]; then
-		#echo "Consult log.txt for more details" 
-		printf '\n\n\n\n\n\n\n\n\n\n'
-		cat ../../log.txt
+		echo "Consult log.txt for more details" 
 		rm -f ../../output_transactions.txt
 	else
 		echo "Transaction outputs differ"
@@ -25,7 +23,7 @@ run_case() {
 	clean
 	printf 'Test %-3s %-3s ' $1 $2
 	
-	expect $dir/expect.exp console_output.txt console_input.txt &>/dev/null
+	expect $dir/expect.exp console_output.txt console_input.txt
 	
 	[[ $? -eq 0 ]] || fail 0
 	
