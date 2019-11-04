@@ -1,6 +1,0 @@
->
->
-agent>
-Account#
-Amount¢
-Error*exceeds limit

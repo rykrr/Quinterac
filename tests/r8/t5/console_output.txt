@@ -1,7 +1,0 @@
->
->
-atm>
-Account#
-Amount¢
-atm>
-logged out

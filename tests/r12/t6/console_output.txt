@@ -1,8 +1,0 @@
->
->
-atm>
-Account#
-Account#
-Amount¢
-Transaction cancelled*atm>
-logged out

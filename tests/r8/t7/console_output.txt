@@ -1,6 +1,0 @@
->
->
-atm>
-Account#
-Amount¢
-Error*exceeds limit

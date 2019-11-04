@@ -1,5 +1,0 @@
-login
-agent
-transfer
-logout
-transfer

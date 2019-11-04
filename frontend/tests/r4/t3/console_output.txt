@@ -1,0 +1,9 @@
+Welcome to AFK Quinterac!
+Type 'login' to begin
+>
+Please enter a login type ('machine' or 'agent')
+>
+Type 'login' to begin
+>
+Please enter a login type ('machine' or 'agent')
+>

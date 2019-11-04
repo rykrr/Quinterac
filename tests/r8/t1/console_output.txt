@@ -1,7 +1,0 @@
->
->
-agent>
-Account#
-Amount¢
-agent>
-logged out
