@@ -19,19 +19,20 @@ public class Main {
      *  args[2] Output: Transaction summary file
      */
     public static void main(String[] args) {
-		// initialize the console for the banking system
-    	fakeMain(new Console(), args);
+    	 // initialize the console for the banking system
+    	Console console = new Console();
+    	System.out.println("Welcome to AFK Quinterac!");
+    	// keep checking user input until the user types in exit
+    	while (true) {
+    		new Main(console, args[0], args[1]);
+    	}
     }
 
-    public static void fakeMain(Console console, String[] args) {
-		// keep checking user input until the user types in exit
-		System.out.println("Welcome to AFK Quinterac!");
-		while (true) {
-			new Main(console, args[0], args[1]);
-		}
-	}
-
 	public void writeFile(String[] summary, String filepath) {
+		
+		if(summary.length == 0)
+			return;
+		
     	try {
     		// write the transaction summary to the output file
 			Writer output = new BufferedWriter(new FileWriter(filepath, true));
@@ -56,7 +57,7 @@ public class Main {
 				accountlist = AccountListReader.read(validAccountsListPath);
     		boolean sessionfinished = false;
     		while (!sessionfinished) {
-    		System.out.println("Please enter a login type (‘machine’ or ‘agent’), type 'cancel' to cancel");
+    		System.out.println("Please enter a login type ('machine' or 'agent'), type 'cancel' to cancel");
     		System.out.print("> ");
     		String input = console.readString();
 
@@ -102,6 +103,7 @@ public class Main {
     		}
     	// able to exit after logged out
     	else if (start.equals("exit")) {
+    		System.out.println("Exit the program");
     		System.exit(0);
     	}
     	else if (start.length()>0) {
