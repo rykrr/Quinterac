@@ -1,11 +1,11 @@
 >
 >
-atm>
-Account#
-Account#
-Amount¢
-atm>
-Account#
-Account#
-Amount¢
-Error*exceeds daily limit
+machine>
+#
+#
+¢
+machine>
+#
+#
+¢
+exceeds daily limit

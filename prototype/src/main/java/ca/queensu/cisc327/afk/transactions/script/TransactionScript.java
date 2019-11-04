@@ -51,6 +51,11 @@ public abstract class TransactionScript<T extends Transaction> {
 
                 if(amount == 0)
                     throw new TransactionCancelledException();
+
+                if(amount < 0) {
+                    System.out.println("Error: Please enter a positive amount");
+                    amount = 0;
+                }
             }
             catch(NumberFormatException e) {
                 System.out.println("Error: Please enter a valid amount");

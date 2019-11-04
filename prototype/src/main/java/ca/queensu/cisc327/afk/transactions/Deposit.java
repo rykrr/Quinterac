@@ -18,11 +18,11 @@ public class Deposit extends Transaction {
 
         limit = session.getConstraints().getPerTransactionLimit(TYPE);
         if (limit != 0 && limit < amount)
-            throw new TransactionLimitViolation("Amount violates deposit limit of ¢" + limit);
+            throw new TransactionLimitViolation("Amount exceeds deposit limit of ¢" + limit);
 
         limit = session.getConstraints().getDailyLimit(TYPE);
         if (limit != 0 && limit < destination.getTransactionAmount(TYPE) + amount)
-            throw new DailyLimitViolation("Amount violates daily limit of ¢"
+            throw new DailyLimitViolation("Amount exceeds daily limit of ¢"
                     + limit + " for depositing into account " + destination);
 
         destination.addTransaction(this);

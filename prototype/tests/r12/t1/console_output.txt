@@ -1,8 +1,8 @@
 >
 >
 agent>
-Account#
-Account#
-Amount¢
+#
+#
+¢
 agent>
 logged out

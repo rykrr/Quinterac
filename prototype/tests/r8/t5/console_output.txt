@@ -1,7 +1,7 @@
 >
 >
-atm>
-Account#
-Amount¢
-atm>
+machine>
+#
+¢
+machine>
 logged out

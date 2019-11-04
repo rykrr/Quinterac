@@ -1,6 +1,6 @@
 >
 >
-atm>
-Account#
-Amount¢
-Error*exceeds limit
+machine>
+#
+¢
+exceeds*limit

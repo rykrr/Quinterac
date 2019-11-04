@@ -1,8 +1,9 @@
 >
 >
-atm>
-Account#
-Account#
-Amount¢
-Transaction cancelled*atm>
+machine>
+#
+#
+¢
+cancelled
+machine>
 logged out

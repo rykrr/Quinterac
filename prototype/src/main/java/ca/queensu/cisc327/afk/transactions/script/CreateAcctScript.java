@@ -13,13 +13,16 @@ public class CreateAcctScript extends TransactionScript<CreateAcct> {
 
         String inputAcc;
 
-        System.out.println("Please enter a seven-digit account number not beginning with 0 (enter ‘0000000’ to cancel)\n");
+        System.out.println("Please enter a seven-digit account number (enter ‘0000000’ to cancel)\n");
         System.out.print("#");
         inputAcc = console.readAccount();
 
 
         while (inputAcc.charAt(0) == '0' || accounts.containsKey(inputAcc)) {
             // account number cannot start with 0,
+            if(inputAcc.equals("0000000")) {
+                throw new TransactionCancelledException();
+            }
             if(inputAcc.charAt(0) == '0'){
                 System.out.println("Account numbers may not begin with 0");
             }
@@ -33,9 +36,9 @@ public class CreateAcctScript extends TransactionScript<CreateAcct> {
         }
 
 
-        String inputName = console.readString();
         System.out.println("Please enter an account name that length between 3 and 30 alphanumeric characters that do not beginning with 0\n");
         System.out.print(">");
+        String inputName = console.readString();
 
         // the length of account name must be 3 to 30 and cannot begin with 0
         while (inputName.length() < 3 || inputName.length() > 30 || inputName.charAt(0) == '0'){

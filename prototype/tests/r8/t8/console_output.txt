@@ -1,6 +1,6 @@
 >
 >
-atm>
-Account#
-Amount¢
+machine>
+#
+¢
 Error*positive

@@ -1,7 +1,8 @@
 >
 >
 agent>
-Account#
-Amount¢
-Transaction cancelled*agent>
+#
+¢
+*cancelled
+agent>
 logged out

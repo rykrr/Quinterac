@@ -1,10 +1,9 @@
 Welcome to AFK Quinterac!
 Type 'login' to begin
 >
-Please enter login type (‘machine’ or ‘agent’)
+Please enter a login type ('machine' or 'agent')
 >
-You have successfully logged out
+Error: invalid login type
 >
-Error: invalid command
-Type ‘login’ to begin
+Error: invalid login type
 >

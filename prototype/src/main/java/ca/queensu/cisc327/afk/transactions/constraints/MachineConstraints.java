@@ -14,7 +14,7 @@ public class MachineConstraints extends TransactionConstraints {
         setDailyLimit(TransactionType.DEPOSIT, 500000);
 
         setPerTransactionLimit(TransactionType.WITHDRAW, 200000);
-        setDailyLimit(TransactionType.DEPOSIT, 500000);
+        setDailyLimit(TransactionType.WITHDRAW, 500000);
 
         setPerTransactionLimit(TransactionType.TRANSFER, 1000000);
         setDailyLimit(TransactionType.TRANSFER, 1000000);

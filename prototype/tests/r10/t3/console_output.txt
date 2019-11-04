@@ -1,6 +1,6 @@
 >
 >
 agent>
-Account#
-Amount¢
-Error*exceeds limit
+#
+¢
+exceeds*limit
