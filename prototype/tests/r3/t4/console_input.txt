@@ -1,5 +1,6 @@
 login
 agent
 transfer
+0000000
 logout
 transfer

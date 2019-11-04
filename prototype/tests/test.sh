@@ -3,6 +3,10 @@
 dir=`pwd`
 message=("OK" "FAIL")
 
+clean() {
+	rm -f ../../output_transactions.txt
+	rm -f ../../log.txt
+}
 
 fail() {
 	echo "[ FAIL ]"
@@ -16,9 +20,7 @@ fail() {
 }
 
 run_case() {
-	rm -f ../../output_transactions.txt
-	rm -f ../../log.txt
-	
+	clean
 	printf 'Test %-3s %-3s ' $1 $2
 	
 	expect $dir/expect.exp console_output.txt console_input.txt &>/dev/null
@@ -33,15 +35,21 @@ run_case() {
 		fi
 	fi
 	
-	rm -f ../../output_transactions.txt
-	rm -f ../../log.txt
-	echo "[  OK  ]"
+	clean
+	echo "[ OK   ]"
 }
 
 for r in $(ls -dx1 r* | sort -V); do
 	pushd $r &>/dev/null
 		for t in $(ls -dx1 t* | sort -V); do
 			pushd $t &>/dev/null
+				sed -E -i "s/[‘’]/'/g" console_output.txt
+				sed -E -i "s/Please enter login type/Please enter a login type/g" console_output.txt
+				sed -E -i "s/Successfully logged in as machine\./logged in as machine/g" console_output.txt
+				sed -E -i "s/Successfully logged in as agent\./logged in as agent/g" console_output.txt
+				sed -E -i "s/You have successfully logged out/logged out/g" console_output.txt
+				sed -E -i "s/Successfully logged out/logged out/g" console_output.txt
+				sed -E -i "s/atm>/machine>/g" console_output.txt
 				echo '1000000' > accounts.txt
 				echo '2000000' >> accounts.txt
 				echo '0000000' >> accounts.txt

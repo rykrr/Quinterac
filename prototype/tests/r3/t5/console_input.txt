@@ -1,5 +1,6 @@
 login
 agent
 createacct
+0000000
 logout
 createacct

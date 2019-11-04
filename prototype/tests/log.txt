@@ -1,0 +1,16 @@
+spawn java -jar ../../../target/afkQuinterac-1.0-SNAPSHOT.jar accounts.txt ../../output_transactions.txt
+Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel
+Welcome to AFK Quinterac!
+Type 'login' to begin
+> login
+Please enter a login type ('machine' or 'agent'), type 'cancel' to cancel
+> agent
+Welcome! You have successfully logged in as agent
+Available commands: deleteacct, logout, deposit, transfer, createacct, withdraw
+agent> createacct
+Please enter a seven-digit account number not beginning with 0 (enter ‘0000000’ to cancel)
+
+
+
+
+Expected: # 

@@ -1,5 +1,6 @@
 login
 agent
 deposit
+0000000
 logout
 deposit

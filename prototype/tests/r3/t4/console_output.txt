@@ -1,15 +1,14 @@
 Welcome to AFK Quinterac!
 Type 'login' to begin
 >
-Please enter login type (‘machine’ or ‘agent’)
+Please enter a login type ('machine' or 'agent')
 >
-Successfully logged in as agent. Please choose one of the services: ‘withdraw’, ‘deposit’, ‘transfer’, ‘createacct’, ‘deleteacct’
-Type ‘logout’ anytime to exit the system
+logged in as agent
 agent>
-Please enter an account to transfer from (enter ‘0000000’ to cancel)
-account #
-You have successfully logged out
+#
+agent>
+logged out
 >
 Error: invalid command
-Type ‘login’ to begin
+Type 'login' to begin
 >
