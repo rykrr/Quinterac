@@ -2,7 +2,7 @@
 
 pushd frontend/tests
 chmod 777 test.sh
-`bash test.sh`
+bash test.sh
 status=$?
 popd
 
