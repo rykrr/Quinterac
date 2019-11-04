@@ -52,6 +52,7 @@ for r in $(ls -dx1 r* | sort -V); do
 				sed -E -i "s/atm>/machine>/g" console_output.txt
 				echo '1000000' > accounts.txt
 				echo '2000000' >> accounts.txt
+				echo '2000001' >> accounts.txt
 				echo '0000000' >> accounts.txt
 				run_case `basename $r` `basename $t`
 			popd &>/dev/null

@@ -1,6 +1,6 @@
 >
 >
 agent>
-Account#
-Amount¢
+#
+¢
 Error*positive

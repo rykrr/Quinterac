@@ -1,8 +1,8 @@
 >
 >
-atm>
-Account#
-Account#
-Amount¢
-atm>
+machine>
+#
+#
+¢
+machine>
 logged out
