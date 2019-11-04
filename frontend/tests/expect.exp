@@ -12,7 +12,7 @@ set input_file [open [lindex $argv 1]]
 set input_lines [split [read $input_file] "\n"]
 close $input_file
 
-spawn java -jar ../../../target/afkQuinteracFrontend-1.0-SNAPSHOT.jar accounts.txt ../../output_transactions.txt
+spawn java -jar ../../../target/QuinteracFrontend-1.0-SNAPSHOT.jar accounts.txt ../../output_transactions.txt
 
 set i 0
 foreach line $expect_lines {

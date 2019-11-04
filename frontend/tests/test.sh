@@ -61,3 +61,4 @@ for r in $(ls -dx1 r* | sort -V); do
 done
 
 rm -f log.txt
+exit 0
