@@ -1,5 +1,5 @@
-# Prototype
-- Design Document.pdf: overall structure of the front end
-- diagrams: contains the UML diagram of the code structure
-- resources: constains the input and output files
-- src: contains the first version of the source code
+# Front-end Test
+- Test_descriptions.pdf: the descreption of out test approches
+- Failure_report.pdf: where the test failed and how we fixed them
+- tests/test.sh: the script file that we used to do the test
+- src/test: the Java test cases
