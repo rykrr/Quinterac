@@ -2,6 +2,10 @@ package ca.queensu.cisc327.afk;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+import org.junit.rules.RuleChain;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -25,15 +29,23 @@ public class AppTest {
 	@Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 	
-    @Test
-    public void testAppR1() throws Exception {
-        runAndTest(Arrays.asList("login", "machine", "withdraw"), //
-                Arrays.asList("0000000", "1000000", "2000000"), //
-                Arrays.asList("Type 'login' to begin", "> Please enter a login type (‘machine’ or ‘agent’), type 'cancel' to cancel",
-                		"> Welcome! You have successfully logged in as machine", "Available commands: withdraw, transfer, logout, deposit", "machine> Successfully logged out"), //
+	//@Test
+	public void testAppR1T0() throws Exception {
+		runAndTest(getListFromFile("./tests/r1/t1/console_input.txt"),
+        		getListFromFile("./tests/r1/t1/accounts.txt"),
+                getListFromFile("./tests/r1/t1/console_output.txt"),
+                getListFromFile("./tests/r1/t1/expected_transactions.txt"));
+	}
+	
+    //@Test
+    public void testAppR1T1() throws Exception {
+        runAndTest(getListFromFile("./tests/r1/t1/console_input.txt"),
+        		getListFromFile("./tests/r1/t1/accounts.txt"),
+                getListFromFile("./tests/r1/t1/console_output.txt"),
                 Arrays.asList(""));
     }
-    @Test
+    
+   // @Test
     public void testAppR2() throws Exception {
     	runAndTest(Arrays.asList("login", "machine", "logout"), //
     			Arrays.asList("0000000", "1000000", "2000000"), //
@@ -43,7 +55,8 @@ public class AppTest {
     }
     
     public List<String> getListFromFile(String path) throws IOException, FileNotFoundException {
-    	BufferedReader reader = new BufferedReader(new FileReader(path));
+    	File file = new File(path);
+    	BufferedReader reader = new BufferedReader(new FileReader(file));
     	List<String> expected = new ArrayList<String>();
     	String line;
     	while ((line= reader.readLine()) != null) {
@@ -85,39 +98,41 @@ public class AppTest {
 
         // setup user input
         String userInput = String.join(System.lineSeparator(), terminal_input);
-        System.out.println(userInput);
         ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(in);
 
         // setup stdin & stdout:
+        PrintStream  system=System.out;
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-        //System.setOut(new PrintStream(outContent));
-        //System.setErr(new PrintStream(errContent));
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
 
         // run the program
-        System.out.println("before main");
+        try {
         exit.expectSystemExit();
-        Main.main(args);
-        System.out.println("after main");
+        Main.main(args);} 
+        finally {
 
         // capture terminal outputs:
         String[] printed_lines = outContent.toString().split("[\r\n]+");
-
+        System.setOut(system);
+        for (int i = 0; i < printed_lines.length; i++) {
+        }
         // compare the tail of the terminal outputs:
         int diff = printed_lines.length - expected_terminal_tails.size();
         for (int i = 0; i < expected_terminal_tails.size(); ++i) {
             assertEquals(expected_terminal_tails.get(i), printed_lines[i + diff]);
         }
-
+        
         // compare output file content to the expected content
         String actual_output = new String(Files.readAllBytes(transaction_summary_file.toPath()), "UTF-8");
         String[] lines = actual_output.split("[\r\n]+");
-        if (expected_transaction_summaries.get(0) !=  "") {
+        if (!expected_transaction_summaries.isEmpty()) {
         	for (int i = 0; i < lines.length; ++i)
         		assertEquals(expected_transaction_summaries.get(i), lines[i]);
         }
-        System.out.println("done");
+        System.out.println("done");}
     }
 
     /**
