@@ -3,8 +3,7 @@ Type 'login' to begin
 >
 Please enter a login type ('machine' or 'agent')
 >
-logged in as machine Please choose one of the services: 'withdraw', 'deposit', 'transfer'
-Type 'logout' anytime to exit the system
+logged in as machine
 machine>
 logged out
 >

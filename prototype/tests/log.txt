@@ -4,10 +4,13 @@ Welcome to AFK Quinterac!
 Type 'login' to begin
 > login
 Please enter a login type ('machine' or 'agent'), type 'cancel' to cancel
-> machine
-Welcome! You have successfully logged in as machine
-Available commands: logout, deposit, transfer, withdraw
-machine> 
+> agent
+Welcome! You have successfully logged in as agent
+Available commands: deleteacct, logout, deposit, transfer, createacct, withdraw
+agent> createacct
+Please enter a seven-digit account number not beginning with 0 (enter ‘0000000’ to cancel)
 
 
-Expected: logged in as machine Please choose one of the services: 'withdraw', 'deposit', 'transfer' 
+
+
+Expected: # 
