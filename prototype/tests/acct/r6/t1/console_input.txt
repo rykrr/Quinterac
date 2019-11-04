@@ -1,4 +1,0 @@
-login
-agent
-deleteacct
-30000000

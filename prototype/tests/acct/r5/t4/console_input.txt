@@ -1,4 +1,0 @@
-login 
-agent
-deposit
-8000000

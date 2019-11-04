@@ -1,3 +1,0 @@
-login
-machine
-1000000
