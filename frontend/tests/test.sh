@@ -11,7 +11,9 @@ clean() {
 fail() {
 	echo "[ FAIL ]"
 	if [[ $1 -eq 0 ]]; then
-		echo "Consult log.txt for more details" 
+		#echo "Consult log.txt for more details" 
+		printf '\n\n\n\n\n\n\n\n\n\n'
+		cat ../../log.txt
 		rm -f ../../output_transactions.txt
 	else
 		echo "Transaction outputs differ"
