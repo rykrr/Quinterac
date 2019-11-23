@@ -1,5 +1,6 @@
 package ca.queensu.cisc327.afk.office;
 
+import ca.queensu.cisc327.afk.office.transactions.ActionFailedException;
 import ca.queensu.cisc327.afk.office.transactions.Transaction;
 import ca.queensu.cisc327.afk.office.transactions.TransactionBuilder;
 
@@ -22,12 +23,25 @@ public class BackOffice {
             this.transactions.add(builder.build(this.accounts));
     }
 
-    public List<Account>  execute() {
-        for(Transaction transaction : transactions) {
+    public List<Account> execute() {
 
+        int transactionIndex = 0;
+
+        try {
+            for (Transaction transaction : transactions) {
+                transaction.getType().getAction().execute(accounts, transaction);
+                transactionIndex++;
+            }
+        }
+        catch(ActionFailedException e) {
+            System.err.println("Back office detected a failure on transaction " + transactionIndex);
+            e.printStackTrace();
         }
 
-        return null;
+        ArrayList<Account> output = new ArrayList<>(accounts.values());
+        output.sort(null);
+
+        return output;
     }
 
 }

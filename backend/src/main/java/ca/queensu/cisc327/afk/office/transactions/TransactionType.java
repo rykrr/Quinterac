@@ -29,6 +29,11 @@ public enum TransactionType {
         return command;
     }
 
+    public Action getAction() {
+        return action;
+    }
+
+
     public static TransactionType codeToEnum(String code) {
         for(TransactionType t : values())
             if(t.getShortCode().equals(code))
