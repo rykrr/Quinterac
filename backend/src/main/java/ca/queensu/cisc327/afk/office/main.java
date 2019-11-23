@@ -23,7 +23,7 @@ public class main {
 	
 	}
 	
-	//Read each transaction from the merged transaction file
+	//Read each transaction from the merged transaction file, check constraints
 	public static ArrayList<String[]> readTransactiontoList(String file) {
 		ArrayList<String[]> list = new ArrayList<String[]>();
 		try {
@@ -32,18 +32,30 @@ public class main {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String line;
 			while ((line = br.readLine()) != null)   {
+				if (line.length() > 61) throw new exceedMaxLenthException("Longer than 61");
 				String[] tokens = line.split(" ");
 				String[] string = {tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]};
+				if (!tokens[0].matches("DEP|WDR|XFR|NEW|DEL|EOS")) throw new transactionCodeException("Not the correct transaction code");
+				for (int i=1; i <=3; i++) {
+					if (tokens[i].contains(" ")) throw new moreThanOneSpaceException("More than one space");
+				}
 				list.add(string);
 			}
+		if (list.get(list.size()-1)[0] != "EOS") throw new transactionCodeException("Last line is not EOS");
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("No line found in file.");
+		} catch (exceedMaxLenthException e) {
+			e.printStackTrace();
+		} catch (transactionCodeException e) {
+			e.printStackTrace();
+		} catch (moreThanOneSpaceException e) {
+			e.printStackTrace();
 		}
         return list;
 	}
 	
-	//Read master accounts from the master account file
+	//Read master accounts from the master account file, check constraints
 	public static ArrayList<String[]> readMasterAccountstoList(String filepath) {
 		ArrayList<String[]> list = new ArrayList<String[]>();
 		try {
@@ -52,13 +64,23 @@ public class main {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String line;
 			while ((line = br.readLine()) != null)   {
+				if (line.length() > 47) throw new exceedMaxLenthException("Longer than 47");
 				String[] tokens = line.split(" ");
 				String[] string = {tokens[0], tokens[1], tokens[2]};
+				for (int i=0; i <=1; i++) {
+					if (tokens[i].contains(" ")) throw new moreThanOneSpaceException("More than one space");
+				}
 				list.add(string);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("No line found in file.");
+		} catch (exceedMaxLenthException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (moreThanOneSpaceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
         return list;
 	}
@@ -95,6 +117,24 @@ public class main {
 			e.printStackTrace();
 		}
     }
+	
+	public static class exceedMaxLenthException extends Exception { 
+	    public exceedMaxLenthException(String errorMessage) {
+	        super(errorMessage);
+	    }
+	}
+	
+	public static class transactionCodeException extends Exception { 
+	    public transactionCodeException(String errorMessage) {
+	        super(errorMessage);
+	    }
+	}
+	
+	public static class moreThanOneSpaceException extends Exception { 
+	    public moreThanOneSpaceException(String errorMessage) {
+	        super(errorMessage);
+	    }
+	}
 	
 	public static void backend() {
 		
