@@ -7,7 +7,7 @@ public class Transaction {
     private Account source;
     private Account destination;
     private int     amount;
-    private String name;
+    private String  name;
 
 
     public Transaction(String code, Account source, Account destination, int amount, String name) {

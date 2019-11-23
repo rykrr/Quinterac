@@ -35,16 +35,23 @@ public class Account implements Comparable<Account> {
         return balance;
     }
 
+    private int addBalance(int value) throws AccountConstraintViolation {
+        balance += value;
 
-    public void addTransaction(Transaction t) {
-        if(!(equals(t.getSourceAccount()) || equals(t.getDestinationAccount())))
-            throw new IllegalArgumentException("Given transaction is irrelevant to this account!");
-        addTransaction(t.getType(), t.getAmount());
+        if(balance < 0)
+            throw new AccountConstraintViolation("");
     }
 
-    private void addTransaction(TransactionType code, int amount) {
-        if(amount < 0)
-            throw new IllegalArgumentException("Transaction amount cannot be negative");
+
+    public void addTransaction(Transaction t) {
+        if(t.getAmount() < 0)
+            throw new IllegalArgumentException("Transaction value must not be negative!");
+
+        if(!(equals(t.getSourceAccount()) || equals(t.getDestinationAccount())))
+            throw new IllegalArgumentException("Given transaction is irrelevant to this account!");
+
+        if(equals(t.getSourceAccount())
+
     }
 
 
