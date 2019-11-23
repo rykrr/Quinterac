@@ -27,7 +27,7 @@ public class main {
         String line;
 			while ((line = br.readLine()) != null)   {
 				String[] tokens = line.split(" ");
-				String[] string = {tokens[0], tokens[1], tokens[2], tokens[3]};
+				String[] string = {tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]};
 				list.add(string);
 			}
 		} catch (IOException e) {
@@ -37,10 +37,17 @@ public class main {
         return list;
 	}
 	
-	public static Transaction transactionReader(String file) {
+	public static TransactionBuilder transactionReader(String file) {
 		ArrayList<String[]> list = readTransactiontoList(file);
-		Transaction trans = new Transaction();
-		trans
+		TransactionBuilder trans = new TransactionBuilder();
+		for (String[] line: list) {
+			trans.setType(line[0]);
+			trans.setSource(line[1]);
+			trans.setAmount(line[2]);
+			trans.setDestination(line[3]);
+			trans.setName(line[4]);
+		}
+		return trans;
 	}
 	
 	public static void writetoFile(File file) {
