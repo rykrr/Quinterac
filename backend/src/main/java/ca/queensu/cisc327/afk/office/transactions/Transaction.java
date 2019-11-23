@@ -1,4 +1,6 @@
-package ca.queensu.cisc327.afk.office;
+package ca.queensu.cisc327.afk.office.transactions;
+
+import ca.queensu.cisc327.afk.office.Account;
 
 public class Transaction {
 
@@ -44,6 +46,10 @@ public class Transaction {
 
     public int getAmount() {
         return amount;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String toString() {

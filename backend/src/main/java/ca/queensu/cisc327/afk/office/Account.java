@@ -1,11 +1,14 @@
 package ca.queensu.cisc327.afk.office;
 
+import ca.queensu.cisc327.afk.office.transactions.Transaction;
+
 public class Account implements Comparable<Account> {
 
     private String name;
     private String number;
 
     private int balance;
+
 
     public Account(String name, String number, int balance) {
         if(number.length() != 7)
@@ -35,23 +38,29 @@ public class Account implements Comparable<Account> {
         return balance;
     }
 
-    private int addBalance(int value) throws AccountConstraintViolation {
+    private void adjustBalance(int value) throws AccountConstraintViolation {
         balance += value;
 
         if(balance < 0)
-            throw new AccountConstraintViolation("");
+            throw new AccountConstraintViolation("Account balance for " + number + " is negative.");
     }
 
 
-    public void addTransaction(Transaction t) {
+    public void applyTransaction(Transaction t) throws AccountConstraintViolation {
         if(t.getAmount() < 0)
             throw new IllegalArgumentException("Transaction value must not be negative!");
 
-        if(!(equals(t.getSourceAccount()) || equals(t.getDestinationAccount())))
-            throw new IllegalArgumentException("Given transaction is irrelevant to this account!");
+        // Subtract the amount from the account balance if this
+        // account is the source account for this transaction.
+        // (Applies to withdrawals and transfers)
+        if(equals(t.getSourceAccount()))
+            adjustBalance(-t.getAmount());
 
-        if(equals(t.getSourceAccount())
-
+        // Add the amount to the account balance if this account
+        // is the destination account for this transaction.
+        // (Applies to deposits and transfers)
+        if(equals(t.getDestinationAccount()))
+            adjustBalance(t.getAmount());
     }
 
 
