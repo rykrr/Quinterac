@@ -1,17 +1,13 @@
-package ca.queensu.cisc327.afk;
-
-import ca.queensu.cisc327.afk.transactions.Transaction;
-import ca.queensu.cisc327.afk.transactions.TransactionType;
-
-import java.util.HashMap;
-import java.util.Map;
+package ca.queensu.cisc327.afk.office;
 
 public class Account implements Comparable<Account> {
 
+    private String name;
     private String number;
-    private Map<TransactionType, Integer> transactions = new HashMap<>();
 
-    public Account(String number) {
+    private int balance;
+
+    public Account(String name, String number, int balance) {
         if(number.length() != 7)
             throw new NumberFormatException("Account numbers must be 7 digits in length");
 
@@ -22,12 +18,21 @@ public class Account implements Comparable<Account> {
             if(!Character.isDigit(number.charAt(i)))
                 throw new NumberFormatException("Invalid account format given");
 
-        this.number = number;
+        this.number  = number;
+        this.balance = balance;
     }
 
 
     public String getNumber() {
         return number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getBalance() {
+        return balance;
     }
 
 
@@ -40,14 +45,8 @@ public class Account implements Comparable<Account> {
     private void addTransaction(TransactionType code, int amount) {
         if(amount < 0)
             throw new IllegalArgumentException("Transaction amount cannot be negative");
-        transactions.put(code, getTransactionAmount(code)+amount);
     }
 
-    public int getTransactionAmount(TransactionType code) {
-        if(!transactions.containsKey(code))
-            return 0;
-        return transactions.get(code).intValue();
-    }
 
     @Override
     public int compareTo(Account account) {
