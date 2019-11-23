@@ -1,4 +1,6 @@
-package ca.queensu.cisc327.afk;
+package ca.queensu.cisc327.afk.office;
+
+import ca.queensu.cisc327.afk.NullAccount;
 
 import java.io.*;
 import java.nio.file.Files;
