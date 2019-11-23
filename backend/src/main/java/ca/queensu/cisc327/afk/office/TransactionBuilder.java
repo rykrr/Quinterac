@@ -29,7 +29,7 @@ public class TransactionBuilder {
 
     public void setAmount(String amount) {
         // Input validations go here
-        this.amount = Integer.parseInt(amount); // TODO change this to int
+        this.amount = Integer.parseInt(amount);
     }
 
     public void setName(String name) {
