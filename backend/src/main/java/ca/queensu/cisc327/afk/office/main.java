@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.Writer;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -82,8 +83,10 @@ public class main {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");  
 			LocalDateTime now = LocalDateTime.now();
 			File source = new File(filepath);
-			File destnation = new File("/logs/" + filepath + dtf.format(now) + ".txt");
+			File destnation = new File("logs/" + filepath + dtf.format(now) + ".txt");
 			FileUtils.copyDirectory(source, destnation);
+			PrintWriter writer = new PrintWriter(source);
+			writer.print("");
 			Writer output = new BufferedWriter(new FileWriter(filepath, true));
 			for (String line : list) {
 				output.write(line + "\n");
