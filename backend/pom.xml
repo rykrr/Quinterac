@@ -2,17 +2,17 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ca.queensu.cisc327.afk</groupId>
-  <artifactId>QuinteracFrontend</artifactId>
+  <artifactId>QuinteracBackend</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>afkQuinteracFrontend</name>
+  <name>afkQuinteracBackend</name>
   <dependencies>
-    <!--dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
       <scope>test</scope>
-    </dependency-->
+    </dependency>
     <dependency>
       <groupId>com.github.stefanbirkner</groupId>
       <artifactId>system-rules</artifactId>
@@ -32,7 +32,7 @@
         <configuration>
             <archive>
               <manifest>
-                <mainClass>ca.queensu.cisc327.afk.Main</mainClass>
+                <mainClass>ca.queensu.cisc327.afk.office.Main</mainClass>
               </manifest>
             </archive>
             <descriptorRefs>
@@ -50,6 +50,42 @@
             </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.5</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <reportSets>
+            <reportSet>
+              <reports>
+                  <report>report</report>
+              </reports>
+            </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>
