@@ -40,9 +40,9 @@ public class Account implements Comparable<Account>, Cloneable {
     }
 
     private void adjustBalance(int value) throws AccountConstraintViolation {
-        balance += value;
-        if(balance < 0)
+        if(balance + value < 0)
             throw new AccountConstraintViolation("Account balance for " + number + " is negative.");
+        balance += value;
     }
 
 

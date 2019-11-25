@@ -7,14 +7,18 @@ import ca.queensu.cisc327.afk.office.transactions.Transaction;
 
 import java.util.Map;
 
-public class Transfer implements Action {
+public class CreateAccountAction implements Action {
 
     @Override
     public void execute(Map<String, Account> accounts, Transaction transaction)
             throws ActionFailedException {
 
-        Action.assertAccountsExist(accounts, transaction);
-        Action.apply(accounts, transaction, transaction.getSourceNumber());
-        Action.apply(accounts, transaction, transaction.getDestinationNumber());
+        if(accounts.containsKey(transaction.getSourceNumber()))
+            throw new ActionFailedException(
+                "Constraint failed. An account with the number "
+                + transaction.getSourceNumber() + " already exists.");
+
+        Account account = new Account(transaction.getName(), transaction.getSourceNumber(), 0);
+        accounts.put(account.getNumber(), account);
     }
 }

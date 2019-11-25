@@ -7,13 +7,13 @@ import ca.queensu.cisc327.afk.office.transactions.Transaction;
 
 import java.util.Map;
 
-public class Withdrawal implements Action {
+public class DepositAction implements Action {
 
     @Override
     public void execute(Map<String, Account> accounts, Transaction transaction)
             throws ActionFailedException {
 
         Action.assertAccountsExist(accounts, transaction);
-        Action.apply(accounts, transaction, transaction.getSourceNumber());
+        Action.apply(accounts, transaction, transaction.getDestinationNumber());
     }
 }
