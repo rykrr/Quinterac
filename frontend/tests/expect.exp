@@ -17,9 +17,9 @@ spawn java -jar ../../../target/QuinteracFrontend-1.0-SNAPSHOT.jar accounts.txt 
 set i 0
 foreach line $expect_lines {
 	
-	set mx [string match "*>*" $line]
-	if { $mx == 0 } { set mx [string match "*¢*" $line] } 
-	if { $mx == 0 } { set mx [string match "*#*" $line] } 
+	set isPrompt [string match "*>*" $line]
+	if { $isPrompt == 0 } { set isPrompt [string match "*¢*" $line] } 
+	if { $isPrompt == 0 } { set isPrompt [string match "*#*" $line] } 
 
 	expect {
 		$line {}
@@ -29,7 +29,7 @@ foreach line $expect_lines {
 		}
 	}
 	
-	if { $mx == 1 } { 
+	if { $isPrompt == 1 } { 
 		if { $i < [llength $input_lines] } {
 			set s [lindex $input_lines $i]
 			send -- $s

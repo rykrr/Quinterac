@@ -2,7 +2,7 @@ package ca.queensu.cisc327.afk.office;
 
 import ca.queensu.cisc327.afk.office.transactions.Transaction;
 
-public class Account implements Comparable<Account> {
+public class Account implements Comparable<Account>, Cloneable {
 
     private String name;
     private String number;
@@ -23,6 +23,7 @@ public class Account implements Comparable<Account> {
 
         this.number  = number;
         this.balance = balance;
+        this.name    = name;
     }
 
 
@@ -40,7 +41,6 @@ public class Account implements Comparable<Account> {
 
     private void adjustBalance(int value) throws AccountConstraintViolation {
         balance += value;
-
         if(balance < 0)
             throw new AccountConstraintViolation("Account balance for " + number + " is negative.");
     }
@@ -53,14 +53,17 @@ public class Account implements Comparable<Account> {
         // Subtract the amount from the account balance if this
         // account is the source account for this transaction.
         // (Applies to withdrawals and transfers)
-        if(equals(t.getSourceAccount()))
+        if(number.equals(t.getSourceNumber()))
             adjustBalance(-t.getAmount());
 
         // Add the amount to the account balance if this account
         // is the destination account for this transaction.
         // (Applies to deposits and transfers)
-        if(equals(t.getDestinationAccount()))
+        else if(number.equals(t.getDestinationNumber()))
             adjustBalance(t.getAmount());
+
+
+        else System.err.println("Warning: Transaction doesn't apply to account");
     }
 
 
@@ -78,6 +81,12 @@ public class Account implements Comparable<Account> {
 
     @Override
     public String toString() {
-        return number;
+        return number + ' ' + (balance == 0? "000" : balance) + ' ' + name;
+    }
+
+
+    @Override
+    public Account clone() {
+        return new Account(name, number, balance);
     }
 }

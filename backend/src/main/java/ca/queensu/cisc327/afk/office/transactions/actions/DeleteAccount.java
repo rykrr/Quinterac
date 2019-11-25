@@ -13,13 +13,12 @@ public class DeleteAccount implements Action {
     public void execute(Map<String, Account> accounts, Transaction transaction)
             throws ActionFailedException {
 
-        Account account = transaction.getSourceAccount();
+        Action.assertAccountsExist(accounts, transaction,
+            "Account to be deleted does not exist in master record");
 
-        if(!Action.accountsExist(accounts, transaction))
-            throw new ActionFailedException(
-                    "Error. The account to be deleted does not exist in the master record.");
+        Account account = accounts.get(transaction.getSourceNumber());
 
-        if(account.getBalance() == 0)
+        if(account.getBalance() != 0)
             throw new ActionFailedException(
                     "Constraint failed. Accounts with a non-zero balance cannot be deleted.");
 

@@ -6,18 +6,18 @@ public class Transaction {
 
     private TransactionType type;
 
-    private Account source;
-    private Account destination;
-    private int     amount;
-    private String  name;
+    private String source;
+    private String destination;
+    private int    amount;
+    private String name;
 
 
-    public Transaction(String code, Account source, Account destination, int amount, String name) {
-        this(TransactionType.codeToEnum(code), source, destination, amount, name);
+    public Transaction(String code, String source, String destination, String amount, String name) {
+        this(TransactionType.codeToEnum(code), source, destination, Integer.parseInt(amount), name);
     }
 
 
-    public Transaction(TransactionType type, Account source, Account destination, int amount, String name) {
+    public Transaction(TransactionType type, String source, String destination, int amount, String name) {
         this.type        = type;
         this.source      = source;
         this.destination = destination;
@@ -28,19 +28,15 @@ public class Transaction {
             throw new NullPointerException("No transaction field may be null!");
     }
 
-    public Transaction(TransactionType type, Account source, Account destination, int amount) {
-        this(type, source, destination, amount, "***");
-    }
-
     public TransactionType getType() {
         return type;
     }
 
-    public Account getSourceAccount() {
+    public String getSourceNumber() {
         return source;
     }
 
-    public Account getDestinationAccount() {
+    public String getDestinationNumber() {
         return destination;
     }
 
@@ -54,9 +50,9 @@ public class Transaction {
 
     public String toString() {
         return type.getShortCode() + ' '
-                + source.getNumber() + ' '
+                + source + ' '
                 + (amount == 0? "000" : amount) + ' '
-                + destination.getNumber() + ' '
+                + destination + ' '
                 + name;
     }
 }

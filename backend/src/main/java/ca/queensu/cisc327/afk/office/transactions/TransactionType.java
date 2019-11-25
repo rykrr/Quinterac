@@ -1,16 +1,14 @@
 package ca.queensu.cisc327.afk.office.transactions;
 
-import ca.queensu.cisc327.afk.office.transactions.actions.ApplyTransaction;
-import ca.queensu.cisc327.afk.office.transactions.actions.CreateAccount;
-import ca.queensu.cisc327.afk.office.transactions.actions.DeleteAccount;
+import ca.queensu.cisc327.afk.office.transactions.actions.*;
 
 public enum TransactionType {
-    DEPOSIT         ("DEP", "deposit",      new ApplyTransaction()  ),
-    WITHDRAW        ("WDR", "withdraw",     new ApplyTransaction()  ),
-    TRANSFER        ("XFR", "transfer",     new ApplyTransaction()  ),
-    CREATE_ACCOUNT  ("NEW", "createacct",   new CreateAccount()     ),
-    DELETE_ACCOUNT  ("DEL", "deleteacct",   new DeleteAccount()     ),
-    END_OF_SESSION  ("EOS", "logout",       (a,t) -> {}             );
+    DEPOSIT         ("DEP", "deposit",      new Deposit()       ),
+    WITHDRAW        ("WDR", "withdraw",     new Withdrawal()    ),
+    TRANSFER        ("XFR", "transfer",     new Transfer()      ),
+    CREATE_ACCOUNT  ("NEW", "createacct",   new CreateAccount() ),
+    DELETE_ACCOUNT  ("DEL", "deleteacct",   new DeleteAccount() ),
+    END_OF_SESSION  ("EOS", "logout",       (a,t) -> {}         );
 
     private String shortCode;
     private String command;
@@ -19,6 +17,7 @@ public enum TransactionType {
     TransactionType(String shortCode, String command, Action action) {
         this.shortCode = shortCode;
         this.command = command;
+        this.action = action;
     }
 
     public String getShortCode() {
@@ -47,8 +46,7 @@ public enum TransactionType {
             if(t.getCommand().equals(command))
                 return t;
 
-        // TODO: Maybe throw an exception instead
-        return null;
+        throw new IllegalArgumentException(command + " is not a valid transaction command");
     }
 
 }

@@ -10,13 +10,39 @@ public interface Action {
             throws ActionFailedException;
 
 
-    public static boolean accountsExist(Map<String, Account> accounts, Transaction t) {
-        Account src = t.getSourceAccount();
-        Account dst = t.getDestinationAccount();
+    static void assertAccountsExist(Map<String, Account> accounts, Transaction t)
+            throws ActionFailedException {
 
-        NullAccount NULL = new NullAccount();
+        if(!accounts.containsKey(t.getSourceNumber()))
+            throw new ActionFailedException("Source account does not exist in master accounts record.");
 
-        return (accounts.containsKey(src) || src.equals(NULL))
-            && (accounts.containsKey(dst) || dst.equals(NULL));
+        if(!accounts.containsKey(t.getDestinationNumber()))
+            throw new ActionFailedException("Destination account does not exist in master accounts record.");
+    }
+
+
+    static void assertAccountsExist(Map<String, Account> accounts, Transaction t, String message)
+            throws ActionFailedException {
+
+        try {
+            assertAccountsExist(accounts, t);
+        }
+        catch(ActionFailedException e) {
+            throw new ActionFailedException(message);
+        }
+    }
+
+    static void apply(Map<String, Account> accounts, Transaction transaction, String number)
+            throws ActionFailedException {
+
+        if(!accounts.containsKey(number))
+            throw new ActionFailedException("Account " + number + " does not exist");
+
+        try {
+            accounts.get(number).applyTransaction(transaction);
+        }
+        catch(Exception e) {
+            throw new ActionFailedException("An unknown error occurred.", e);
+        }
     }
 }
