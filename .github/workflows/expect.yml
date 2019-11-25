@@ -15,7 +15,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Compile with Maven
-      run: mvn -DskipTests clean compile package
+      run: mvn clean compile package
     - name: Testing
       run: chmod 777 run_test.sh && bash run_test.sh
     - name: package
