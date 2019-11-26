@@ -6,7 +6,7 @@
 Please see TestPlan.md for the test plan documentation, and test_cases.pdf under tests folder for the table.
 
 ## Assignment 2: Front End Prototypes
-The first prototype of AFK Quinterac can be found under the prototype folder.
+The first prototype of AFK Quinterac can be found under the frontend folder.
 
 ## Assignment 3: Front End Test Cases
 - The test description and failure report are under frontend/, see README inside the frontend folder for more details.
@@ -15,5 +15,7 @@ The first prototype of AFK Quinterac can be found under the prototype folder.
 - The jUnit+Maven version of the test can be found under frontend/src/test/java/ca/queensu/cisc327/afk/.
 
 ## Assignment 4: Back End Prototypes
+- The back end prototype of AFK Quinterac can be found under the backend folder.
+- The design document can be found at backend/A4_Design_Document.pdf
 
 ## Assignment 5: Back End Test Cases
