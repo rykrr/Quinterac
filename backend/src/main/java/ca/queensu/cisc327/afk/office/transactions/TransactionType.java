@@ -10,8 +10,21 @@ public enum TransactionType {
     DELETE_ACCOUNT  ("DEL", new DeleteAccountAction()   ),
     END_OF_SESSION  ("EOS", (a,t) -> {}                 );
 
+
+      //////////////////////////////////////////////////////////////
+     /// Enum Definition //////////////////////////////////////////
+    //////////////////////////////////////////////////////////////
+
+
+    // Transaction Short Code refers to the 3 character
+    // code that appears at the beginning of each line
+    // in the merged transaction file
     private String shortCode;
+
+    // Action implementations modify the master account
+    // table entries. Similar to TransactionScript<T>
     private Action action;
+
 
     TransactionType(String shortCode, Action action) {
         this.shortCode = shortCode;
