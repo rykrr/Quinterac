@@ -15,7 +15,9 @@ The first prototype of AFK Quinterac can be found under the frontend folder.
 - The jUnit+Maven version of the test can be found under frontend/src/test/java/ca/queensu/cisc327/afk/.
 
 ## Assignment 4: Back End Prototypes
-- The back end prototype of AFK Quinterac can be found under the backend folder.
+- The source code of the backend prototype can be found under the backend/src/main/.../office folder.
 - The design document can be found at backend/A4_Design_Document.pdf
 
 ## Assignment 5: Back End Test Cases
+- The report can be found at backend/CreateAccountTestReport.pdf and backend/WithdrawTestReport.pdf
+- The test code can be found under backend/src/test/.../actions folder.
