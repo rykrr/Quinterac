@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransactionType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">afkQuinteracBackend</a> &gt; <a href="index.source.html" class="el_package">ca.queensu.cisc327.afk.office.transactions</a> &gt; <span class="el_source">TransactionType.java</span></div><h1>TransactionType.java</h1><pre class="source lang-java linenums">package ca.queensu.cisc327.afk.office.transactions;
+
+import ca.queensu.cisc327.afk.office.transactions.actions.*;
+
+<span class="fc" id="L5">public enum TransactionType {</span>
+<span class="fc" id="L6">    DEPOSIT         (&quot;DEP&quot;, new DepositAction()         ),</span>
+<span class="fc" id="L7">    WITHDRAW        (&quot;WDR&quot;, new WithdrawalAction()      ),</span>
+<span class="fc" id="L8">    TRANSFER        (&quot;XFR&quot;, new TransferAction()        ),</span>
+<span class="fc" id="L9">    CREATE_ACCOUNT  (&quot;NEW&quot;, new CreateAccountAction()   ),</span>
+<span class="fc" id="L10">    DELETE_ACCOUNT  (&quot;DEL&quot;, new DeleteAccountAction()   ),</span>
+<span class="pc" id="L11">    END_OF_SESSION  (&quot;EOS&quot;, (a,t) -&gt; {}                 );</span>
+
+    private String shortCode;
+    private Action action;
+
+<span class="fc" id="L16">    TransactionType(String shortCode, Action action) {</span>
+<span class="fc" id="L17">        this.shortCode = shortCode;</span>
+<span class="fc" id="L18">        this.action = action;</span>
+<span class="fc" id="L19">    }</span>
+
+    public String getShortCode() {
+<span class="fc" id="L22">        return shortCode;</span>
+    }
+    public Action getAction() {
+<span class="nc" id="L25">        return action;</span>
+    }
+
+    public static TransactionType codeToEnum(String code) {
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">        for(TransactionType t : values())</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">            if(t.getShortCode().equals(code))</span>
+<span class="fc" id="L31">                return t;</span>
+
+<span class="nc" id="L33">        throw new IllegalArgumentException(code + &quot; is not a valid transaction code&quot;);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

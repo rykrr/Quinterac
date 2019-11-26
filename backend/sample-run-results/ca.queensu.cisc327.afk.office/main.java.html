@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">afkQuinteracBackend</a> &gt; <a href="index.source.html" class="el_package">ca.queensu.cisc327.afk.office</a> &gt; <span class="el_source">main.java</span></div><h1>main.java</h1><pre class="source lang-java linenums">package ca.queensu.cisc327.afk.office;
+
+import ca.queensu.cisc327.afk.office.transactions.Transaction;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="nc" id="L22">public class main {</span>
+
+	public static void main(String[] args) {
+<span class="nc bnc" id="L25" title="All 2 branches missed.">		if(args.length != 3) {</span>
+<span class="nc" id="L26">			System.err.println(&quot;Error: Insufficient arguments.&quot;);</span>
+<span class="nc" id="L27">			System.err.println(&quot;Usage: backOffice &lt;master account list&gt; &lt;transactions&gt; &lt;output account list&gt;&quot;);</span>
+		}
+<span class="nc" id="L29">		ArrayList&lt;Account&gt; accounts = accountReader(args[0]);</span>
+<span class="nc" id="L30">		ArrayList&lt;Transaction&gt; transactions = transactionReader(args[1]);</span>
+
+<span class="nc" id="L32">		BackOffice office = new BackOffice(accounts, transactions);</span>
+
+<span class="nc" id="L34">		List&lt;Account&gt; outputAccounts = office.execute();</span>
+
+<span class="nc" id="L36">		List&lt;String&gt; outputStrings = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L38" title="All 2 branches missed.">		for(Account account : outputAccounts)</span>
+<span class="nc" id="L39">			outputStrings.add(account.toString());</span>
+
+<span class="nc" id="L41">		writetoFile(args[0], outputStrings);</span>
+<span class="nc" id="L42">	}</span>
+	
+	//Read each transaction from the merged transaction file, check constraints
+	public static ArrayList&lt;String[]&gt; readTransactionList(String file) {
+<span class="nc" id="L46">		ArrayList&lt;String[]&gt; list = new ArrayList&lt;String[]&gt;();</span>
+		try {
+<span class="nc" id="L48">		FileInputStream stream = new FileInputStream(file);</span>
+<span class="nc" id="L49">        DataInputStream in = new DataInputStream(stream);</span>
+<span class="nc" id="L50">        BufferedReader br = new BufferedReader(new InputStreamReader(in));</span>
+        String line;
+<span class="nc bnc" id="L52" title="All 2 branches missed.">			while ((line = br.readLine()) != null)   {</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">				if (line.length() &gt; 61) throw new exceedMaxLenthException(&quot;Longer than 61&quot;);</span>
+<span class="nc" id="L54">				String[] tokens = line.split(&quot; &quot;);</span>
+
+<span class="nc bnc" id="L56" title="All 2 branches missed.">				for(int i = 0; i &lt; tokens.length; i++)</span>
+<span class="nc" id="L57">					System.out.println(i + &quot; &quot; + tokens[i]);</span>
+
+<span class="nc" id="L59">				String[] string = {tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]};</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">				if (!tokens[0].matches(&quot;DEP|WDR|XFR|NEW|DEL|EOS&quot;)) throw new transactionCodeException(&quot;Not the correct transaction code&quot;);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">				for (int i=1; i &lt;=3; i++) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">					if (tokens[i].contains(&quot; &quot;)) throw new moreThanOneSpaceException(&quot;More than one space&quot;);</span>
+				}
+<span class="nc" id="L64">				list.add(string);</span>
+
+<span class="nc bnc" id="L66" title="All 2 branches missed.">				if(tokens[0].equals(&quot;EOS&quot;))</span>
+<span class="nc" id="L67">					break;</span>
+<span class="nc" id="L68">			}</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">		if (!list.get(list.size()-1)[0].equals(&quot;EOS&quot;)) throw new transactionCodeException(&quot;Last line is not EOS&quot;);</span>
+<span class="nc" id="L70">		} catch (IOException e) {</span>
+<span class="nc" id="L71">			e.printStackTrace();</span>
+<span class="nc" id="L72">			System.out.println(&quot;No line found in file.&quot;);</span>
+<span class="nc" id="L73">		} catch (exceedMaxLenthException e) {</span>
+<span class="nc" id="L74">			e.printStackTrace();</span>
+<span class="nc" id="L75">		} catch (transactionCodeException e) {</span>
+<span class="nc" id="L76">			e.printStackTrace();</span>
+<span class="nc" id="L77">		} catch (moreThanOneSpaceException e) {</span>
+<span class="nc" id="L78">			e.printStackTrace();</span>
+<span class="nc" id="L79">		}</span>
+<span class="nc" id="L80">        return list;</span>
+	}
+
+	//Read master accounts from the master account file, check constraints
+	public static ArrayList&lt;String[]&gt; readMasterAccountsList(String filepath) {
+<span class="nc" id="L85">		ArrayList&lt;String[]&gt; list = new ArrayList&lt;String[]&gt;();</span>
+		try {
+<span class="nc" id="L87">		FileInputStream stream = new FileInputStream(filepath);</span>
+<span class="nc" id="L88">        DataInputStream in = new DataInputStream(stream);</span>
+<span class="nc" id="L89">        BufferedReader br = new BufferedReader(new InputStreamReader(in));</span>
+        String line;
+<span class="nc bnc" id="L91" title="All 2 branches missed.">			while ((line = br.readLine()) != null)   {</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">				if (line.length() &gt; 47) throw new exceedMaxLenthException(&quot;Longer than 47&quot;);</span>
+<span class="nc" id="L93">				String[] tokens = line.split(&quot; &quot;);</span>
+<span class="nc" id="L94">				String[] string = {tokens[0], tokens[1], tokens[2]};</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">				for (int i=0; i &lt;=1; i++) {</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">					if (tokens[i].contains(&quot; &quot;)) throw new moreThanOneSpaceException(&quot;More than one space&quot;);</span>
+				}
+<span class="nc" id="L98">				list.add(string);</span>
+<span class="nc" id="L99">			}</span>
+<span class="nc" id="L100">		} catch (IOException e) {</span>
+<span class="nc" id="L101">			e.printStackTrace();</span>
+<span class="nc" id="L102">			System.out.println(&quot;No line found in file.&quot;);</span>
+<span class="nc" id="L103">		} catch (exceedMaxLenthException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L105">			e.printStackTrace();</span>
+<span class="nc" id="L106">		} catch (moreThanOneSpaceException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L108">			e.printStackTrace();</span>
+<span class="nc" id="L109">		}</span>
+<span class="nc" id="L110">        return list;</span>
+	}
+	
+	// Build transaction from the read in transaction file
+	public static ArrayList&lt;Transaction&gt; transactionReader(String filepath) {
+<span class="nc" id="L115">		ArrayList&lt;String[]&gt; list = readTransactionList(filepath);</span>
+<span class="nc" id="L116">		ArrayList&lt;Transaction&gt; transactions = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L118" title="All 2 branches missed.">		for (String[] line: list) {</span>
+<span class="nc" id="L119">			Transaction transaction =</span>
+					new Transaction(line[0], line[1], line[3], line[2], line[4]);
+<span class="nc" id="L121">			transactions.add(transaction);</span>
+<span class="nc" id="L122">		}</span>
+
+<span class="nc" id="L124">		return transactions;</span>
+	}
+
+	public static ArrayList&lt;Account&gt; accountReader(String filepath) {
+<span class="nc" id="L128">		ArrayList&lt;String[]&gt; list = readMasterAccountsList(filepath);</span>
+<span class="nc" id="L129">		ArrayList&lt;Account&gt; accounts = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L131" title="All 2 branches missed.">		for (String[] line: list)</span>
+<span class="nc" id="L132">			accounts.add(new Account(line[2], line[0], Integer.parseInt(line[1])));</span>
+
+<span class="nc" id="L134">		return accounts;</span>
+	}
+
+	// Write to file, save the file to log before overwrite
+	public static void writetoFile(String filepath, List&lt;String&gt; list) {
+		try {
+<span class="nc" id="L140">			DateTimeFormatter dtf = DateTimeFormatter.ofPattern(&quot;yyyyMMddHHmmss&quot;);  </span>
+<span class="nc" id="L141">			LocalDateTime now = LocalDateTime.now();</span>
+<span class="nc" id="L142">			File source = new File(filepath);</span>
+<span class="nc" id="L143">			File destnation = new File(&quot;logs/&quot; + filepath + dtf.format(now) + &quot;.txt&quot;);</span>
+<span class="nc" id="L144">			destnation.mkdirs();</span>
+<span class="nc" id="L145">			Files.copy(source.toPath(), destnation.toPath(), StandardCopyOption.REPLACE_EXISTING);</span>
+
+<span class="nc" id="L147">			PrintWriter writer = new PrintWriter(source);</span>
+<span class="nc" id="L148">			writer.print(&quot;&quot;);</span>
+<span class="nc" id="L149">			Writer output = new BufferedWriter(new FileWriter(filepath, true));</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">			for (String line : list)</span>
+<span class="nc" id="L151">				output.write(line + &quot;\n&quot;);</span>
+<span class="nc" id="L152">			output.flush();</span>
+<span class="nc" id="L153">			output.close();</span>
+		}
+<span class="nc" id="L155">		catch (IOException e) {</span>
+<span class="nc" id="L156">			e.printStackTrace();</span>
+<span class="nc" id="L157">		}</span>
+<span class="nc" id="L158">    }</span>
+	
+	public static class exceedMaxLenthException extends Exception { 
+	    public exceedMaxLenthException(String errorMessage) {
+<span class="nc" id="L162">	        super(errorMessage);</span>
+<span class="nc" id="L163">	    }</span>
+	}
+	
+	public static class transactionCodeException extends Exception { 
+	    public transactionCodeException(String errorMessage) {
+<span class="nc" id="L168">	        super(errorMessage);</span>
+<span class="nc" id="L169">	    }</span>
+	}
+	
+	public static class moreThanOneSpaceException extends Exception { 
+	    public moreThanOneSpaceException(String errorMessage) {
+<span class="nc" id="L174">	        super(errorMessage);</span>
+<span class="nc" id="L175">	    }</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
