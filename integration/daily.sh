@@ -41,7 +41,7 @@ for session in {1..3}; do
 	
 	id="${day}/${session}"
 	
-	input="${inputs}/${session}/transactions.txt"
+	input="${inputs}/${session}/input.txt"
 	output="${outputs}/${session}/summary.txt"
 	
 	[[ -f $input ]] || fail "No input transactions" $session;
