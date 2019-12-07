@@ -21,3 +21,9 @@ The first prototype of AFK Quinterac can be found under the frontend folder.
 ## Assignment 5: Back End Test Cases
 - The report can be found at backend/CreateAccountTestReport.pdf and backend/WithdrawTestReport.pdf
 - The test code can be found under backend/src/test/.../actions folder.
+
+## Assignment 6: Integration
+- 1. Daily and Weekly scripts or driver programs
+- 2. Transaction session inputs for one Daily run and Merged Transaction Summary file from that run
+- 3. Master Accounts file listings after each of five daily runs
+- 4. Integration Defect Report 
