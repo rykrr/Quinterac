@@ -27,7 +27,12 @@ public class AccountListReader {
 
             while(scanner.hasNextLine()) {
                 try {
-                    account = new Account(scanner.nextLine());
+					String line = scanner.nextLine();
+					
+					if(line.length() == 0)
+						continue;
+					
+                    account = new Account(line);
                 }
                 catch(NumberFormatException e) {
                     throw new AccountListReaderException(

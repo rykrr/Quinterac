@@ -16,6 +16,13 @@ accounts_master=${5:-"master_accounts.txt"}
 overrides=$(grep "${day}/" overrides.txt)
 
 
+## Fail ##################
+fail() {
+	echo "Error: $1 (Session $2)"
+	exit 1
+}
+
+
 ## Make Outputs ##########
 mkdir -p $outputs
 
@@ -37,6 +44,7 @@ for session in {1..3}; do
 	input="${inputs}/${session}/transactions.txt"
 	output="${outputs}/${session}/summary.txt"
 	
+	[[ -f $input ]] || fail "No input transactions" $session;
 	
 	if [[ $overrides == *$id* ]]; then
 		echo "=============================="
@@ -52,11 +60,7 @@ for session in {1..3}; do
 		expect daily.exp $frontend $accounts_valid $input $output
 	fi
 	
-	if [[ $? -ne 0 ]]; then
-		echo "Error: Day ${day} session ${session} has failed"
-		exit 1
-	fi
-	
+	[[ $? -ne 0 ]] && fail "Frontend process failed" $session
 	[[ -f $output ]] && sed /^EOS/d < $output >> $merged
 done
 
