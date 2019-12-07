@@ -15,11 +15,16 @@ close $input_file
 set output_file [lindex $argv 3]
 
 
-spawn $frontend $accounts $output_file
+spawn java -jar $frontend $accounts $output_file
 
 foreach line $input_lines {
 	expect {
+		"*Error*" {
+			send_log "Error detected!"
+			exit 1
+		}
 		"\[(*>*)(*#*)(*¢*)]" {
+			sleep 0.5
 			send $line
 			send "\n"
 		}
