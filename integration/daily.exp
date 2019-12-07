@@ -7,15 +7,15 @@ log_file log.txt
 set frontend [lindex $argv 0]
 set accounts [lindex $argv 1]
 
+
 set input_file [open [lindex $argv 2]]
 set input_lines [split [read $input_file] "\n"]
 close $input_file
 
-set output_file [open [linex $argv 3]]
+set output_file [lindex $argv 3]
 
 
 spawn $frontend $accounts $output_file
-
 
 foreach line $input_lines {
 	expect {
