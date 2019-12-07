@@ -1,0 +1,11 @@
+login
+agent
+createacct
+30000000
+3000000
+Test03
+deposit
+99999999999
+9999999
+logout
+exit

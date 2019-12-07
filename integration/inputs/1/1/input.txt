@@ -1,0 +1,10 @@
+login
+agent
+createacct
+1000000
+
+deposit
+1000000
+100000
+logout
+exit

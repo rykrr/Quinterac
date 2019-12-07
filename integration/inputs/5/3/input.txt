@@ -1,0 +1,13 @@
+login
+machine
+deposit
+12345678
+1234567
+1000000
+15
+deleteacct
+withdraw
+100 0 000
+14
+logout
+exit

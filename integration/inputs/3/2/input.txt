@@ -1,0 +1,12 @@
+login
+machine
+deleteacct
+withdraw
+4000000
+7000000
+392403
+ksghusdg
+hello there;
+0000000
+logout
+exit
