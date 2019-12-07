@@ -22,6 +22,9 @@ public class AccountListReader {
         Account account = null;
 
         try(Scanner scanner = new Scanner(new File(path))) {
+            if(!scanner.hasNextLine())
+                return accounts;
+
             while(scanner.hasNextLine()) {
                 try {
                     account = new Account(scanner.nextLine());
