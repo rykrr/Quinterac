@@ -1,0 +1,13 @@
+login
+withdraw
+machine
+withdraw
+100000000
+1000000
+1234556284251
+adgaj aigjlrg
+1 2 3
+withdraw
+0000000
+logout
+exit

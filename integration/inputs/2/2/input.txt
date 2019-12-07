@@ -1,0 +1,9 @@
+login
+agent
+withdraw
+2000000
+50000
+deletacct
+2000000
+logout
+exit
