@@ -2,6 +2,7 @@ package ca.queensu.cisc327.afk.transactions;
 
 import ca.queensu.cisc327.afk.Account;
 import ca.queensu.cisc327.afk.SessionType;
+import ca.queensu.cisc327.afk.transactions.constraints.exceptions.ConstraintException;
 import ca.queensu.cisc327.afk.transactions.constraints.exceptions.DailyLimitViolation;
 import ca.queensu.cisc327.afk.transactions.constraints.exceptions.TransactionLimitViolation;
 

@@ -11,6 +11,9 @@ public class Account implements Comparable<Account> {
     private String number;
     private Map<TransactionType, Integer> transactions = new HashMap<>();
 
+    protected boolean isNew = false;
+
+
     public Account(String number) {
         if(number.length() != 7)
             throw new NumberFormatException("Account numbers must be 7 digits in length");
@@ -48,6 +51,12 @@ public class Account implements Comparable<Account> {
             return 0;
         return transactions.get(code).intValue();
     }
+
+
+    public boolean isNewAccount() {
+        return isNew;
+    }
+
 
     @Override
     public int compareTo(Account account) {

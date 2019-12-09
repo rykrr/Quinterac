@@ -55,7 +55,7 @@ public class CreateAcctScript extends TransactionScript<CreateAcct> {
 			*/
         }
 
-        Account newAccount = new Account(inputAcc);
+        Account newAccount = new NewAccount(inputAcc);
         accounts.put(inputAcc, newAccount);
         return new CreateAcct(newAccount, inputName);
         }

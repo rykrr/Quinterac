@@ -1,6 +1,7 @@
 package ca.queensu.cisc327.afk.transactions;
 
 import ca.queensu.cisc327.afk.Account;
+import ca.queensu.cisc327.afk.transactions.constraints.exceptions.ConstraintException;
 
 public abstract class Transaction {
 
@@ -20,6 +21,9 @@ public abstract class Transaction {
 
         if(type == null || source == null || destination == null || name == null)
             throw new NullPointerException("No transaction field may be null!");
+
+        if(source.isNewAccount() || destination.isNewAccount())
+            throw new ConstraintException("Transactions must not involve newly created accounts.");
     }
 
     public Transaction(TransactionType type, Account source, Account destination, int amount) {
