@@ -24,7 +24,7 @@ foreach line $input_lines {
 			exit 1
 		}
 		"\[(*>*)(*#*)(*¢*)]" {
-			sleep 0.5
+			sleep 0.2
 			send $line
 			send "\n"
 		}

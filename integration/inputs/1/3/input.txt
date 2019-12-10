@@ -1,7 +1,7 @@
 login
-machine
-withdraw
-2000000
-100000
+agent
+createacct
+3000000
+TEST03
 logout
 exit

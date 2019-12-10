@@ -58,14 +58,13 @@ for session in {1..3}; do
 		java -jar $frontend $accounts_valid $output
 	else
 		expect daily.exp $frontend $accounts_valid $input $output
-		sleep 5
 	fi
 	
 	
 	[[ $? -ne 0 ]] && fail "Frontend process failed" $session
 	
 	grep "Error:" log.txt
-	[[ $? -ne 0 ]] && fail "Error detected in logs" $session
+	[[ $? -eq 0 ]] && fail "Error detected in logs" $session
 	
 	[[ -f $output ]] && sed /EOS/d < $output >> $merged
 done
