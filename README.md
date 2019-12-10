@@ -23,7 +23,4 @@ The first prototype of AFK Quinterac can be found under the frontend folder.
 - The test code can be found under backend/src/test/.../actions folder.
 
 ## Assignment 6: Integration
-1. Daily and Weekly scripts
-2. Transaction session inputs for one Day1 run and Merged Transaction Summary file from that run
-3. Master Accounts file listings after each of five daily runs
-4. Integration Defect Report 
+- Files that related to assignment 6 can be seen under integration folder.
