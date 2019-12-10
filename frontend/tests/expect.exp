@@ -1,6 +1,6 @@
 #!/usr/bin/expect
 
-set timeout 10
+set timeout 15
 
 log_file ../../log.txt
 
@@ -32,7 +32,7 @@ foreach line $expect_lines {
 	if { $isPrompt == 1 } { 
 		if { $i < [llength $input_lines] } {
 			set s [lindex $input_lines $i]
-			sleep 0.01
+			sleep 0.1
 			send -- $s
 			send "\n"
 			incr i 1
