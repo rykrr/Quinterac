@@ -19,26 +19,35 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class main {
+public class Main {
 
 	public static void main(String[] args) {
 		if(args.length != 3) {
 			System.err.println("Error: Insufficient arguments.");
 			System.err.println("Usage: backOffice <master account list> <transactions> <output account list>");
 		}
-		ArrayList<Account> accounts = accountReader(args[0]);
-		ArrayList<Transaction> transactions = transactionReader(args[1]);
+		
+		String mergedTransactionsFile	= args[0];
+		String masterAccountsFile		= args[1];
+		String validAccountsFile		= args[2];
+		
+		ArrayList<Transaction> transactions = transactionReader(mergedTransactionsFile);
+		ArrayList<Account> accounts = accountReader(masterAccountsFile);
 
 		BackOffice office = new BackOffice(accounts, transactions);
 
 		List<Account> outputAccounts = office.execute();
 
-		List<String> outputStrings = new ArrayList<>();
-
-		for(Account account : outputAccounts)
-			outputStrings.add(account.toString());
-
-		writetoFile(args[0], outputStrings);
+		List<String> masterAccountsList	= new ArrayList<>();
+		List<String> validAccountsList	= new ArrayList<>();
+		
+		for(Account account : outputAccounts) {
+			masterAccountsList.add(account.toString());
+			validAccountsList.add(account.getNumber());
+		}
+		
+		writetoFile(masterAccountsFile, masterAccountsList, true);
+		writetoFile(validAccountsFile, validAccountsList, false);
 	}
 	
 	//Read each transaction from the merged transaction file, check constraints
@@ -89,6 +98,10 @@ public class main {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String line;
 			while ((line = br.readLine()) != null)   {
+				if(line.equals(""))
+					continue;
+				
+				
 				if (line.length() > 47) throw new exceedMaxLenthException("Longer than 47");
 				String[] tokens = line.split(" ");
 				String[] string = {tokens[0], tokens[1], tokens[2]};
@@ -135,14 +148,17 @@ public class main {
 	}
 
 	// Write to file, save the file to log before overwrite
-	public static void writetoFile(String filepath, List<String> list) {
+	public static void writetoFile(String filepath, List<String> list, boolean backup) {
 		try {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");  
-			LocalDateTime now = LocalDateTime.now();
 			File source = new File(filepath);
-			File destnation = new File("logs/" + filepath + dtf.format(now) + ".txt");
-			destnation.mkdirs();
-			Files.copy(source.toPath(), destnation.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			
+			if(backup) {
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");  
+				LocalDateTime now = LocalDateTime.now();
+				File destnation = new File("logs/" + filepath + dtf.format(now) + ".txt");
+				destnation.mkdirs();
+				Files.copy(source.toPath(), destnation.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			}
 
 			PrintWriter writer = new PrintWriter(source);
 			writer.print("");

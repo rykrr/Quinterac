@@ -1,0 +1,11 @@
+login
+agent
+createacct
+5000000
+TEST05
+transfer
+2000000
+1000000
+14000
+logout
+exit

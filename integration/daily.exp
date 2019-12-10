@@ -1,0 +1,38 @@
+#!/usr/bin/expect
+
+set timeout 10
+
+log_file log.txt
+
+set frontend [lindex $argv 0]
+set accounts [lindex $argv 1]
+
+
+set input_file [open [lindex $argv 2]]
+set input_lines [split [read $input_file] "\n"]
+close $input_file
+
+set output_file [lindex $argv 3]
+
+
+spawn java -jar $frontend $accounts $output_file
+
+foreach line $input_lines {
+	expect {
+		"*Error*" {
+			send_log "Error detected!"
+			exit 1
+		}
+		"\[(*>*)(*#*)(*¢*)]" {
+			sleep 0.01
+			send $line
+			send "\n"
+		}
+		timeout {
+			send_log "Program Timed Out"
+			exit 1
+		}
+	}
+}
+
+exit 0

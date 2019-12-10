@@ -22,9 +22,17 @@ public class AccountListReader {
         Account account = null;
 
         try(Scanner scanner = new Scanner(new File(path))) {
+            if(!scanner.hasNextLine())
+                return accounts;
+
             while(scanner.hasNextLine()) {
                 try {
-                    account = new Account(scanner.nextLine());
+					String line = scanner.nextLine();
+					
+					if(line.length() == 0)
+						continue;
+					
+                    account = new Account(line);
                 }
                 catch(NumberFormatException e) {
                     throw new AccountListReaderException(

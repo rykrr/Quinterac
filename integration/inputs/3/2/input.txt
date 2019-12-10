@@ -1,0 +1,9 @@
+login
+machine
+withdraw
+3000000
+7000
+deposit
+0000000
+logout
+exit

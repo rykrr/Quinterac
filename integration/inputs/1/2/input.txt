@@ -1,0 +1,7 @@
+login
+agent
+createacct
+2000000
+TEST02
+logout
+exit

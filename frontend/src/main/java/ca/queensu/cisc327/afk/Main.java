@@ -38,7 +38,9 @@ public class Main {
 			Writer output = new BufferedWriter(new FileWriter(filepath, true));
 			for (String line : summary) {
 				output.write(line + "\n");
+				System.out.println(line);
 			}
+			output.flush();
 			output.close();
 		} catch (IOException e) {
 			e.printStackTrace();

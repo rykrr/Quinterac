@@ -1,0 +1,7 @@
+login
+agent
+deleteacct
+4000000
+TEST04
+logout
+exit

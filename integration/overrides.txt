@@ -1,0 +1,6 @@
+Frontend Manual Override File
+Add sessions to be overriden below
+
+Format:  day/session
+Example: 7/1
+
