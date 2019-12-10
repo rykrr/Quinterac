@@ -1,11 +1,7 @@
 login
 agent
-createacct
-30000000
-3000000
-Test03
 deposit
-99999999999
+3000000
 9999999
 logout
 exit

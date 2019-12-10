@@ -2,10 +2,10 @@ login
 machine
 deposit
 1000000
-500000
+200000
 deposit
 2000000
-150000
+200000
 transfer
 2000000
 3000000

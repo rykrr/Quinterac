@@ -1,11 +1,9 @@
 login
 agent
 deleteacct
-5000000
 0000000
 createacct
-1000000
-0000000
-0000000
+4000000
+TEST04
 logout
 exit

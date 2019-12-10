@@ -98,6 +98,10 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String line;
 			while ((line = br.readLine()) != null)   {
+				if(line.equals(""))
+					continue;
+				
+				
 				if (line.length() > 47) throw new exceedMaxLenthException("Longer than 47");
 				String[] tokens = line.split(" ");
 				String[] string = {tokens[0], tokens[1], tokens[2]};

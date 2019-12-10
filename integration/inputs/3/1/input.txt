@@ -1,10 +1,8 @@
 login
 machine
 transfer
-4000000
 3000000
 2000000
-5000000
-createacct
+50000
 logout
 exit

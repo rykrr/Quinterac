@@ -1,12 +1,9 @@
 login
 machine
-deleteacct
 withdraw
-4000000
-7000000
-392403
-ksghusdg
-hello there;
+3000000
+7000
+deposit
 0000000
 logout
 exit

@@ -1,12 +1,12 @@
 login
-withdraw
 machine
+deposit
+4000000
+200000
 withdraw
-100000000
-1000000
-1234556284251
-adgaj aigjlrg
-1 2 3
+4000000
+2000000
+200000
 withdraw
 0000000
 logout
